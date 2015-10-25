@@ -4,6 +4,27 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string-array name="hostel">
+        <item>Apartments</item>
+        <item>Boys Hostel-1</item>
+        <item>Boys Hostel-2</item>
+        <item>Boys Hostel-3</item>
+        <item>Boys Hostel-4</item>
+        <item>Boys Hostel-5</item>
+        <item>Boys Hostel-6</item>
+        <item>Boys Hostel-7</item>
+        <!--<item>Boys Hostel-6   Block-54</item>-->
+    </string-array>
+
+    <string-array name="block">
+        <item>None</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+    </string-array>
+
     <string-array name="nOfItems">
         <item>1</item>
         <item>2</item>

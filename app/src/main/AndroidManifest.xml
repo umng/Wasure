@@ -52,6 +52,9 @@
         <activity android:name=".SupportActivity"
             android:label="Support"></activity>
 
+        <activity android:name=".AddressActivity"
+            android:label="Add Address"></activity>
+
         <!--<service android:name="com.parse.PushService" />-->
         <!--<receiver android:name="com.parse.ParsePushBroadcastReceiver"-->
             <!--android:exported="false">-->

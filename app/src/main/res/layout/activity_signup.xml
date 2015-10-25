@@ -18,8 +18,7 @@
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:id="@+id/activity_signup_email"
-            android:autoLink="email"/>
+            android:id="@+id/activity_signup_email" />
 
         <EditText
             android:layout_width="match_parent"
@@ -49,7 +48,7 @@
                 android:inputType="textPersonName"
                 android:id="@+id/activity_signup_lastName"
                 android:layout_weight="1"
-                android:layout_marginRight="5sp"/>
+                android:layout_marginLeft="5sp"/>
 
         </LinearLayout>
 

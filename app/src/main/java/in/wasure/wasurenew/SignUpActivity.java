@@ -62,7 +62,7 @@ public class SignUpActivity extends Activity {
                         if (e == null) {
                             pd.dismiss();
                             Toast.makeText(SignUpActivity.this, "You have SignedUp!", Toast.LENGTH_LONG).show();
-                            Intent in = new Intent(SignUpActivity.this, MainActivity.class);
+                            Intent in = new Intent(SignUpActivity.this, AddressActivity.class);
                             in.addFlags(in.FLAG_ACTIVITY_NEW_TASK);
                             in.addFlags(in.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(in);
