@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">wasureNew</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="nOfItems">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="srvType">
+        <item>Wash/Iron</item>
+        <item>Iron</item>
+        <item>Wash</item>
+        <item>Dry Clean</item>
+    </string-array>
+
+</resources>
