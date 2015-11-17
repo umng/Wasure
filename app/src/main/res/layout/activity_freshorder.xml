@@ -8,69 +8,64 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/activity_freshorder_mainframe">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/activity_freshorder_mainframe">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_weight="1">
 
-                <LinearLayout
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
+                    android:text="Pant"
+                    android:layout_weight="1"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Pant"
-                        android:layout_weight="1"/>
+            </LinearLayout>
 
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
 
-                <LinearLayout
+                <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
+                    android:layout_height="30sp"
+                    android:id="@+id/noItems1"
+                    android:entries="@array/nOfItems"
+                    android:layout_weight="2"/>
 
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="30sp"
-                        android:id="@+id/noItems1"
-                        android:entries="@array/nOfItems"
-                        android:layout_weight="2"/>
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="30sp"
-                        android:id="@+id/serviceType1"
-                        android:entries="@array/srvType"
-                        android:layout_weight="1"/>
-
-                </LinearLayout>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
+                    android:id="@+id/serviceType1"
+                    android:entries="@array/srvType"
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Order Now"
-            android:id="@+id/activity_freshorder_button" />
-
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Now"
+        android:id="@+id/activity_freshorder_button"
+        android:layout_below="@id/activity_freshorder_mainframe"/>
 
 </RelativeLayout>
