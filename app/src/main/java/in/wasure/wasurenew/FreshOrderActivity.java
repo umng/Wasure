@@ -2,7 +2,9 @@ package in.wasure.wasurenew;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.*;
 import android.widget.Spinner;
@@ -13,6 +15,8 @@ import android.widget.TextView;
  */
 public class FreshOrderActivity extends AppCompatActivity {
 
+    private int x=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,8 +24,11 @@ public class FreshOrderActivity extends AppCompatActivity {
 
         LinearLayout parentlayout = (LinearLayout) findViewById(R.id.activity_freshorder_mainframe);
 
-        String itemList[]={"Pant", "Shirt", "T-Shirt", "Jeans", "Towel"};
+        final LinearLayout frame2 = (LinearLayout) findViewById(R.id.activity_freshorder_frame2);
+        final LinearLayout frame3 = (LinearLayout) findViewById(R.id.activity_freshorder_frame3);
+        final Button showmore = (Button) findViewById(R.id.activity_freshorder_showmore);
 
+//        String itemList[]={"Pant", "Shirt", "T-Shirt", "Jeans", "Towel"};
 //        for(int i=0;i<5;i++)
 //        {
 //            LayoutParams lparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f);
@@ -55,6 +62,21 @@ public class FreshOrderActivity extends AppCompatActivity {
 //            parentlayout.addView(layout);
 //        }
 
+        showmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(x==1)
+                {
+                    frame2.setVisibility(View.VISIBLE);
+                    x++;
+                }
+                else
+                {
+                    showmore.setVisibility(View.GONE);
+                    frame3.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
     }
 }

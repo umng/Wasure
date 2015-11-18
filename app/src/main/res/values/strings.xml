@@ -26,19 +26,41 @@
     </string-array>
 
     <string-array name="nOfItems">
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
-        <item>6</item>
     </string-array>
 
-    <string-array name="srvType">
+    <string-array name="srvTypeAll">
         <item>Wash/Iron</item>
         <item>Iron</item>
         <item>Wash</item>
         <item>Dry Clean</item>
+    </string-array>
+
+    <string-array name="srvTypeWI">
+        <item>Wash/Iron</item>
+        <item>Iron</item>
+        <item>Wash</item>
+    </string-array>
+
+    <string-array name="srvTypeWIOnly">
+        <item>Wash/Iron</item>
+    </string-array>
+
+    <string-array name="srvTypeD">
+        <item>Dry Clean</item>
+    </string-array>
+
+    <string-array name="srvTypeW">
+        <item>Wash</item>
+    </string-array>
+
+    <string-array name="srvTypeI">
+        <item>Iron</item>
     </string-array>
 
 </resources>
