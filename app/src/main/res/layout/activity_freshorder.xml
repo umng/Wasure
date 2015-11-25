@@ -1063,7 +1063,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Order Now"
-                android:id="@+id/activity_freshorder_button"
+                android:id="@+id/activity_freshorder_ordernow"
                 android:layout_below="@id/activity_freshorder_mainframe"
                 android:layout_marginTop="5sp"/>
 

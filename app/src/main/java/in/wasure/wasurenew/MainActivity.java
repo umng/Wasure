@@ -12,7 +12,7 @@ import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
 
-    Button logout,about,support,freshOrder;
+    Button logout,about,support,freshOrder,myorders;
     TextView header;
     ProgressDialog pd;
 
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
                 pd.show();
                 ParseUser.logOut();
                 pd.dismiss();
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
 
@@ -67,6 +67,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent in = new Intent(MainActivity.this,FreshOrderActivity.class);
                 startActivity(in);
+            }
+        });
+
+        myorders = (Button) findViewById(R.id.activity_main_myOrdersButton);
+        myorders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MyOrdersActivity.class));
             }
         });
 
