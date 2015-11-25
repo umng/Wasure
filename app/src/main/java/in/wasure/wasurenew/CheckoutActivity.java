@@ -3,6 +3,7 @@ package in.wasure.wasurenew;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -22,6 +24,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.util.List;
 
 /**
  * Created by Umang on 11/18/2015.
@@ -37,20 +41,28 @@ public class CheckoutActivity extends AppCompatActivity {
 
     ParseUser user = ParseUser.getCurrentUser();
 
-    private int x=0, y=0;
+    private int x=0, y=0, z=0, i=0;
     private String List="";
-    private String[] itemName= {"Pant                ","Shirt               ",
+    private String[] itemNameforShow= {"Pant                ","Shirt               ",
             "Jeans               ","T-Shirt             ","Jacket            ",
-            "Blanket            ","Night Pant      ", "Ladies Top     ","Ladies Dress  ",
-            "Skirt                ","Capries          ","Slacks             ","Bed Sheet     ",
-            "Pillow Cover ", "Bag (Medium)","Bag (Large)    ","Sweater         ",
+            "Blanket            ","Night Pant      ","Shorts               ","Ladies Top     ",
+            "Ladies Dress  ","Skirt                ","Capris          ","Slacks             ",
+            "Bed Sheet     ","Pillow Cover ", "Bag (Medium)","Bag (Large)    ","Sweater         ",
             "Towel              "};
+    private String[] itemName= {"Pant", "Shirt", "Jeans", "T-Shirt", "Jacket", "Blanket"
+            , "Night Pant", "Shorts", "Ladies Top", "Ladies Dress", "Skirt", "Capris", "Slacks"
+            , "Bed Sheet", "Pillow Cover", "Bag (Medium)", "Bag (Large)", "Sweater", "Towel"};
+    private int[][] rate={{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+            , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+            , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+            , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
     private int[] itemSelected;
-    String[] srvType;
+    private String[] srvType;
     String phoneOrder, hostelOrder, blockOrder, roomOrder;
     String phoneSelected, hostelSelected, blockSelected, roomSelected;
     String userDetailsObjectId;
     ParseObject orderId = new ParseObject("Orders");
+    int r= 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +73,11 @@ public class CheckoutActivity extends AppCompatActivity {
         itemSelected = intent.getIntArrayExtra("NO_OF_ITEM");
         srvType = intent.getStringArrayExtra("SERVICE_TYPE");
 
-        for (int i=0; i<18; i++)
+        for (int i=0; i<19; i++)
         {
             if(itemSelected[i]!=0)
             {
-                List += itemName[i] + "\t\t" + itemSelected[i] + "\t\t\t\t\t\t" + srvType[i] + "\n";
+                List += itemNameforShow[i] + "\t\t" + itemSelected[i] + "\t\t\t\t\t\t" + srvType[i] + "\n";
             }
         }
         TextView t = (TextView) findViewById(R.id.nameList);
@@ -120,6 +132,38 @@ public class CheckoutActivity extends AppCompatActivity {
             //set phone
             phoneSelected = user.getString("phone");
             phone.setText(phoneSelected);
+
+            //get rate of items
+            i = 0;
+            final ParseQuery ratequery = new ParseQuery("Price");
+            ratequery.whereNotEqualTo("itemName", "");
+            ratequery.orderByAscending("createdAt");
+            ratequery.findInBackground(new FindCallback<ParseObject>() {
+
+                @Override
+                public void done(java.util.List<ParseObject> content, ParseException pEx) {
+                    // TODO Auto-generated method stub
+                    if (pEx == null && content != null) {
+                        for (ParseObject rateObject : content) {
+                            rate[0][i] = rateObject.getInt("wash_iron");
+                            rate[1][i] = rateObject.getInt("wash");
+                            rate[2][i] = rateObject.getInt("iron");
+                            rate[3][i] = rateObject.getInt("dryclean");
+                            if(i==18)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                i++;
+                            }
+                        }
+                        z=1;
+                    } else {
+                        Toast.makeText(CheckoutActivity.this, "Error in fetching rate for items!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
 
             ParseQuery<ParseObject> query = ParseQuery.getQuery("UserDetails");
             query.whereEqualTo("username", user);
@@ -194,8 +238,14 @@ public class CheckoutActivity extends AppCompatActivity {
 
                     pd.show();
 
+                    //close checkout activity on not able to fetch rate
+                    if(z==0)
+                    {
+                        finish();
+                    }
+
                     //save new address
-                    room =(EditText) findViewById(R.id.activity_checkout_room);
+                    room = (EditText) findViewById(R.id.activity_checkout_room);
                     phone = (EditText) findViewById(R.id.activity_checkout_phone);
                     hostel = (Spinner) findViewById(R.id.activity_checkout_hostel);
                     block = (Spinner) findViewById(R.id.activity_checkout_block);
@@ -204,13 +254,10 @@ public class CheckoutActivity extends AppCompatActivity {
                     hostelOrder = hostel.getSelectedItem().toString();
                     blockOrder = block.getSelectedItem().toString();
 
-                    if(roomOrder==roomSelected && blockOrder==blockSelected
-                            && hostelOrder==hostelSelected && phoneOrder==phoneSelected)
-                    {
+                    if (roomOrder == roomSelected && blockOrder == blockSelected
+                            && hostelOrder == hostelSelected && phoneOrder == phoneSelected) {
                         //nothing
-                    }
-                    else
-                    {
+                    } else {
                         //set phone
                         user.put("phone", phoneOrder);
                         user.saveInBackground(new SaveCallback() {
@@ -242,7 +289,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     orderNow.put("username", user);
                     orderNow.put("status", "Pending");
                     orderNow.put("address", roomOrder + ", " + hostelOrder + ", Block "
-                            + blockOrder );
+                            + blockOrder);
                     orderNow.put("phone", phoneOrder);
                     orderNow.saveInBackground();
                     orderId = orderNow;
@@ -261,14 +308,31 @@ public class CheckoutActivity extends AppCompatActivity {
                     final AlertDialog alert11 = builder1.create();
 
                     //save items
-                    for (int i=0; i<18; i++)
-                    {
-                        if(itemSelected[i]!=0)
-                        {
+                    for (int i = 0; i < 19; i++) {
+                        if (itemSelected[i] != 0) {
+
+                            //set rateSubmit
+                            if(srvType[i].equals("Wash/Iron") )
+                            {
+                                r = 0;
+                            }
+                            else if(srvType[i].equals("Wash"))
+                            {
+                                r = 1;
+                            }
+                            else if(srvType[i].equals("Iron"))
+                            {
+                                r = 2;
+                            }
+                            else if(srvType[i].equals( "Dry Clean"))
+                            {
+                                r = 3;
+                            }
+
                             ParseObject orderedItem = new ParseObject("ItemsOrdered");
                             orderedItem.put("orderId", orderId);
                             orderedItem.put("itemName", itemName[i]);
-                            orderedItem.put("rate", 10);
+                            orderedItem.put("rate", rate[r][i]);
                             orderedItem.put("numberItems", itemSelected[i]);
                             orderedItem.put("srvType", srvType[i]);
                             orderedItem.saveInBackground(new SaveCallback() {
@@ -276,15 +340,15 @@ public class CheckoutActivity extends AppCompatActivity {
                                     if (e == null) {
 
                                     } else {
-                                        Toast.makeText(CheckoutActivity.this,"Error in ordering try again!",Toast.LENGTH_LONG).show();
+
+                                        Toast.makeText(CheckoutActivity.this, "Error in ordering try again!", Toast.LENGTH_LONG).show();
                                         pd.dismiss();
-                                        y=1;
+                                        y = 1;
                                     }
                                 }
                             });
                         }
-                        if(y==0)
-                        {
+                        if (y == 0) {
                             pd.dismiss();
 
                             alert11.show();
@@ -296,5 +360,11 @@ public class CheckoutActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

@@ -25,13 +25,20 @@
         android:orientation="vertical"
         android:id="@+id/main">
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_fullname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:inputType="textPersonName"
-            android:id="@+id/activity_checkout_name"
-            android:layout_marginBottom="5sp" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Full Name"
+                android:inputType="textPersonName"
+                android:id="@+id/activity_checkout_name"
+                android:layout_marginBottom="5sp" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <Spinner
             android:layout_width="match_parent"
@@ -45,15 +52,22 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_room_checkout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Room"
-                android:inputType="number"
-                android:id="@+id/activity_checkout_room"
-                android:layout_weight="1"
-                android:layout_marginRight="5sp"
-                android:maxLength="4" />
+                android:layout_weight="1">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Room"
+                    android:inputType="number"
+                    android:id="@+id/activity_checkout_room"
+                    android:layout_marginRight="5sp"
+                    android:maxLength="4" />
+
+            </android.support.design.widget.TextInputLayout>
 
             <Spinner
                 android:layout_width="match_parent"
@@ -65,13 +79,20 @@
 
         </LinearLayout>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_phone_checkout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone"
-            android:inputType="phone"
-            android:id="@+id/activity_checkout_phone"
-            android:layout_marginTop="5sp" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:id="@+id/activity_checkout_phone"
+                android:layout_marginTop="5sp" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

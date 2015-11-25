@@ -1,5 +1,6 @@
 package in.wasure.wasurenew;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,13 +26,22 @@ import java.util.List;
  */
 public class MyOrdersActivity extends AppCompatActivity {
 
+    ProgressDialog pd;
+
     ParseUser user = ParseUser.getCurrentUser();
     ParseObject orderId;
+
+    int total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myorders);
+
+        pd = new ProgressDialog(MyOrdersActivity.this);
+        pd.setMessage("Processing");
+        pd.setCancelable(false);
+        pd.show();
 
         ParseQuery orderQuery = new ParseQuery("Orders");
         orderQuery.whereEqualTo("username", user);
@@ -45,10 +55,6 @@ public class MyOrdersActivity extends AppCompatActivity {
                     if (!(content.isEmpty())) {
                         for (ParseObject orderObject : content) {
                             orderId = orderObject;
-//                            String date = aParseObject.getCreatedAt().toGMTString();
-//                            infoHashMap.put("objectId", objectId);
-//                            infoHashMap.put("Date", date);
-//                            infoHashMap.put("photo", bmp);
 
                             LinearLayout linearLayout_54 = (LinearLayout) findViewById(R.id.activity_myorders_listlayout);
 
@@ -166,6 +172,7 @@ public class MyOrdersActivity extends AppCompatActivity {
                             linearLayout_598.addView(linearLayout_509);
 
                             //fetching items
+                            total = 0;
                             ParseQuery itemQuery = new ParseQuery("ItemsOrdered");
                             itemQuery.whereEqualTo("orderId", orderId);
                             itemQuery.orderByDescending("createdAt");
@@ -177,12 +184,11 @@ public class MyOrdersActivity extends AppCompatActivity {
                                     if (pEx == null && content != null) {
                                         for (ParseObject itemObject : content) {
 
-                                            if(!(itemObject.getString("itemName").equals("")))
-                                            {
+                                            if (!(itemObject.getString("itemName").equals(""))) {
                                                 //set item name
                                                 TextView textView_860 = new TextView(MyOrdersActivity.this);
                                                 textView_860.setText(itemObject.getString("itemName").trim()
-                                                        + " ("  + itemObject.get("rate") + " Rs.)");
+                                                        + " (" + itemObject.get("rate") + " Rs.)");
                                                 textView_860.setTextColor(Color.parseColor("#C5CAE9"));
                                                 LayoutParams layout_36 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -205,8 +211,8 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                                                 //set price
                                                 TextView textView_935 = new TextView(MyOrdersActivity.this);
-                                                textView_935.setText( (Integer)itemObject.get("numberItems")
-                                                        * (Integer)itemObject.get("rate") + "");
+                                                textView_935.setText((Integer) itemObject.get("numberItems")
+                                                        * (Integer) itemObject.get("rate") + "");
                                                 textView_935.setTextColor(Color.parseColor("#C5CAE9"));
                                                 LayoutParams layout_233 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -214,7 +220,6 @@ public class MyOrdersActivity extends AppCompatActivity {
                                                 layout_233.height = LayoutParams.WRAP_CONTENT;
                                                 textView_935.setLayoutParams(layout_233);
                                                 linearLayout_509.addView(textView_935);
-
                                             }
                                         }
                                     } else {
@@ -224,105 +229,6 @@ public class MyOrdersActivity extends AppCompatActivity {
                                 }
                             });
 
-//                            TextView textView_702 = new TextView(MyOrdersActivity.this);
-//                            textView_702.setText("Shirts");
-//                            textView_702.setTextColor(Color.parseColor("#C5CAE9"));
-//                            LayoutParams layout_125 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-//                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-//                            layout_125.width = LayoutParams.MATCH_PARENT;
-//                            layout_125.height = LayoutParams.WRAP_CONTENT;
-//                            textView_702.setLayoutParams(layout_125);
-//                            linearLayout_643.addView(textView_702);
-//
-//                            TextView textView_529 = new TextView(MyOrdersActivity.this);
-//                            textView_529.setText("Towel");
-//                            textView_529.setTextColor(Color.parseColor("#C5CAE9"));
-//                            LayoutParams layout_950 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-//                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-//                            layout_950.width = LayoutParams.MATCH_PARENT;
-//                            layout_950.height = LayoutParams.WRAP_CONTENT;
-//                            textView_529.setLayoutParams(layout_950);
-//                            linearLayout_643.addView(textView_529);
-
-
-
-
-
-//                            for (i = 0; i < 18; i++) {
-//                                //set item number
-//                                if(itemNumber[i]!=0)
-//                                {
-//                                    TextView textView_779 = new TextView(MyOrdersActivity.this);
-//                                    textView_779.setText(itemNumber[i]);
-//                                    textView_779.setTextColor(Color.parseColor("#C5CAE9"));
-//                                    LayoutParams layout_343 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-//                                            LinearLayout.LayoutParams.WRAP_CONTENT);
-//                                    layout_343.width = LayoutParams.MATCH_PARENT;
-//                                    layout_343.height = LayoutParams.WRAP_CONTENT;
-//                                    textView_779.setLayoutParams(layout_343);
-//                                    linearLayout_599.addView(textView_779);
-//                                }
-//                            }
-
-//                            TextView textView_187 = new TextView(MyOrdersActivity.this);
-//                            textView_187.setText("1");
-//                            textView_187.setTextColor(Color.parseColor("#C5CAE9"));
-//                            LayoutParams layout_312 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-//                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-//                            layout_312.width = LayoutParams.MATCH_PARENT;
-//                            layout_312.height = LayoutParams.WRAP_CONTENT;
-//                            textView_187.setLayoutParams(layout_312);
-//                            linearLayout_599.addView(textView_187);
-//
-//                            TextView textView_557 = new TextView(MyOrdersActivity.this);
-//                            textView_557.setText("1");
-//                            textView_557.setTextColor(Color.parseColor("#C5CAE9"));
-//                            LayoutParams layout_62 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-//                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-//                            layout_62.width = LayoutParams.MATCH_PARENT;
-//                            layout_62.height = LayoutParams.WRAP_CONTENT;
-//                            textView_557.setLayoutParams(layout_62);
-//                            linearLayout_599.addView(textView_557);
-//                            linearLayout_598.addView(linearLayout_600);
-
-
-
-//                            for (i = 0; i < 18; i++) {
-//                                //set Price
-//                                if(itemNumber[i]!=0)
-//                                {
-//                                    TextView textView_935 = new TextView(MyOrdersActivity.this);
-//                                    textView_935.setText(itemNumber[i]*rate[i]);
-//                                    textView_935.setTextColor(Color.parseColor("#C5CAE9"));
-//                                    LayoutParams layout_233 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-//                                            LinearLayout.LayoutParams.WRAP_CONTENT);
-//                                    layout_233.width = LayoutParams.MATCH_PARENT;
-//                                    layout_233.height = LayoutParams.WRAP_CONTENT;
-//                                    textView_935.setLayoutParams(layout_233);
-//                                    linearLayout_508.addView(textView_935);
-//                                }
-//                            }
-
-//                            TextView textView_479 = new TextView(MyOrdersActivity.this);
-//                            textView_479.setText("15");
-//                            textView_479.setTextColor(Color.parseColor("#C5CAE9"));
-//                            LayoutParams layout_259 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-//                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-//                            layout_259.width = LayoutParams.MATCH_PARENT;
-//                            layout_259.height = LayoutParams.WRAP_CONTENT;
-//                            textView_479.setLayoutParams(layout_259);
-//                            linearLayout_508.addView(textView_479);
-//
-//                            TextView textView_266 = new TextView(MyOrdersActivity.this);
-//                            textView_266.setText("20");
-//                            textView_266.setTextColor(Color.parseColor("#C5CAE9"));
-//                            LayoutParams layout_77 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-//                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-//                            layout_77.width = LayoutParams.MATCH_PARENT;
-//                            layout_77.height = LayoutParams.WRAP_CONTENT;
-//                            textView_266.setLayoutParams(layout_77);
-//                            linearLayout_508.addView(textView_266);
-//                            linearLayout_598.addView(linearLayout_508);
                             linearLayout_118.addView(linearLayout_598);
 
                             TextView textView_198 = new TextView(MyOrdersActivity.this);
@@ -336,17 +242,44 @@ public class MyOrdersActivity extends AppCompatActivity {
                             textView_198.setLayoutParams(layout_234);
                             linearLayout_118.addView(textView_198);
 
-                            TextView textView_796 = new TextView(MyOrdersActivity.this);
-                            textView_796.setText("Total: Rs. 65");
-                            textView_796.setTextColor(Color.parseColor("#8C9EFF"));
-                            LayoutParams layout_909 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-                            layout_909.width = LayoutParams.MATCH_PARENT;
-                            layout_909.height = LayoutParams.WRAP_CONTENT;
-                            layout_909.topMargin = 10;
-                            layout_909.leftMargin = 10;
-                            textView_796.setLayoutParams(layout_909);
-                            linearLayout_118.addView(textView_796);
+                            final LinearLayout linearLayout_119 = linearLayout_118;
+
+                            ParseQuery totalQuery = new ParseQuery("ItemsOrdered");
+                            totalQuery.whereEqualTo("orderId", orderId);
+                            totalQuery.orderByDescending("createdAt");
+                            totalQuery.findInBackground(new FindCallback<ParseObject>() {
+
+                                @Override
+                                public void done(List<ParseObject> content, ParseException pEx) {
+                                    // TODO Auto-generated method stub
+                                    if (pEx == null && content != null) {
+                                        for (ParseObject itemObject : content) {
+
+                                            if (!(itemObject.getString("itemName").equals(""))) {
+                                                //set total amount
+                                                total += ((Integer) itemObject.get("numberItems") * (Integer) itemObject.get("rate"));
+                                            }
+                                        }
+
+                                        TextView textView_796 = new TextView(MyOrdersActivity.this);
+                                        textView_796.setText("Total: " + String.valueOf(total) + " Rs.");
+                                        textView_796.setTextColor(Color.parseColor("#8C9EFF"));
+                                        LayoutParams layout_909 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                                LinearLayout.LayoutParams.WRAP_CONTENT);
+                                        layout_909.width = LayoutParams.MATCH_PARENT;
+                                        layout_909.height = LayoutParams.WRAP_CONTENT;
+                                        layout_909.topMargin = 10;
+                                        layout_909.leftMargin = 10;
+                                        textView_796.setLayoutParams(layout_909);
+                                        linearLayout_119.addView(textView_796);
+
+                                    } else {
+                                        Toast.makeText(MyOrdersActivity.this, "Error in fetching total amount try again!", Toast.LENGTH_LONG).show();
+
+                                    }
+                                }
+                            });
+
                             hello.addView(linearLayout_118);
 
                             LinearLayout linearLayout_861 = new LinearLayout(MyOrdersActivity.this);
@@ -412,6 +345,7 @@ public class MyOrdersActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(MyOrdersActivity.this, "Error in fetching orders try again!", Toast.LENGTH_LONG).show();
                     }
+                    pd.dismiss();
                 }
             }
         });

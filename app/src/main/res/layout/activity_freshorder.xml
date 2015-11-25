@@ -428,6 +428,62 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="5sp"
+                    android:id="@+id/row_shorts">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/story"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Shorts"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="20sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="30sp"
+                            android:id="@+id/noItems8"
+                            android:entries="@array/nOfItems"
+                            android:layout_weight="2"
+                            android:layout_gravity="center"/>
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="30sp"
+                            android:id="@+id/serviceType8"
+                            android:entries="@array/srvTypeWI"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5sp"
                     android:id="@+id/row_ladiestop">
 
                     <LinearLayout
@@ -462,7 +518,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems8"
+                            android:id="@+id/noItems9"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -470,7 +526,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType8"
+                            android:id="@+id/serviceType9"
                             android:entries="@array/srvTypeWI"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
@@ -518,7 +574,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems9"
+                            android:id="@+id/noItems10"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -526,7 +582,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType9"
+                            android:id="@+id/serviceType10"
                             android:entries="@array/srvTypeWIOnly"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
@@ -574,7 +630,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems10"
+                            android:id="@+id/noItems11"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -582,7 +638,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType10"
+                            android:id="@+id/serviceType11"
                             android:entries="@array/srvTypeWI"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
@@ -630,7 +686,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems11"
+                            android:id="@+id/noItems12"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -638,7 +694,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType11"
+                            android:id="@+id/serviceType12"
                             android:entries="@array/srvTypeWI"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
@@ -686,7 +742,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems12"
+                            android:id="@+id/noItems13"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -694,7 +750,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType12"
+                            android:id="@+id/serviceType13"
                             android:entries="@array/srvTypeWI"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
@@ -751,7 +807,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems13"
+                            android:id="@+id/noItems14"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -759,7 +815,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType13"
+                            android:id="@+id/serviceType14"
                             android:entries="@array/srvTypeW"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
@@ -807,7 +863,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems14"
+                            android:id="@+id/noItems15"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -815,7 +871,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType14"
+                            android:id="@+id/serviceType15"
                             android:entries="@array/srvTypeW"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
@@ -830,62 +886,6 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="5sp"
                     android:id="@+id/row_bagmedium">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/story"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Bag (Medium)"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="10dp"
-                            android:textSize="20sp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="30sp"
-                            android:id="@+id/noItems15"
-                            android:entries="@array/nOfItems"
-                            android:layout_weight="2"
-                            android:layout_gravity="center"/>
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="30sp"
-                            android:id="@+id/serviceType15"
-                            android:entries="@array/srvTypeD"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5sp"
-                    android:id="@+id/row_baglarge">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -941,6 +941,62 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="5sp"
+                    android:id="@+id/row_baglarge">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/story"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bag (Large)"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="20sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="30sp"
+                            android:id="@+id/noItems17"
+                            android:entries="@array/nOfItems"
+                            android:layout_weight="2"
+                            android:layout_gravity="center"/>
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="30sp"
+                            android:id="@+id/serviceType17"
+                            android:entries="@array/srvTypeD"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5sp"
                     android:id="@+id/row_sweater">
 
                     <LinearLayout
@@ -975,7 +1031,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems17"
+                            android:id="@+id/noItems18"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -983,7 +1039,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType17"
+                            android:id="@+id/serviceType18"
                             android:entries="@array/srvTypeD"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>
@@ -1031,7 +1087,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/noItems18"
+                            android:id="@+id/noItems19"
                             android:entries="@array/nOfItems"
                             android:layout_weight="2"
                             android:layout_gravity="center"/>
@@ -1039,7 +1095,7 @@
                         <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="30sp"
-                            android:id="@+id/serviceType18"
+                            android:id="@+id/serviceType19"
                             android:entries="@array/srvTypeW"
                             android:layout_weight="1"
                             android:layout_gravity="center"/>

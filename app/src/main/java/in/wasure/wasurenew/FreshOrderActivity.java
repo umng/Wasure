@@ -17,48 +17,14 @@ import android.widget.TextView;
 public class FreshOrderActivity extends AppCompatActivity {
 
     private int x=1;
-    private String[] nofItem={"","","","","","","","","","","","","","","","","",""};
-    private int[] itemSelected={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    private String[] itemName={"","","","","","","","","","","","","","","","","",""};
+    private String[] nofItem={"","","","","","","","","","","","","","","","","","",""};
+    private int[] itemSelected={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    private String[] itemName={"","","","","","","","","","","","","","","","","","",""};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_freshorder);
-
-//        String itemList[]={"Pant", "Shirt", "T-Shirt", "Jeans", "Towel"};
-//        for(int i=0;i<5;i++)
-//        {
-//            LayoutParams lparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f);
-//            lparams.setMargins(0,0,0,20);
-//
-//            LinearLayout layout = new LinearLayout(this);
-//            layout.setOrientation(LinearLayout.HORIZONTAL);
-//            layout.setLayoutParams(lparams);
-//
-//            TextView itemName = new TextView(this);
-//            itemName.setLayoutParams(lparams);
-//            itemName.setText(itemList[i]);
-//            layout.addView(itemName);
-//
-//            LayoutParams lparams2 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 2.0f);
-//
-//            Spinner spinner = new Spinner(this);
-//            itemName.setLayoutParams(lparams2);
-//            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.nOfItems)); //selected item will look like a spinner set from XML
-//            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//            spinner.setAdapter(spinnerArrayAdapter);
-//            layout.addView(spinner);
-//
-//            Spinner spinner2 = new Spinner(this);
-//            itemName.setLayoutParams(lparams);
-//            ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.srvType)); //selected item will look like a spinner set from XML
-//            spinnerArrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//            spinner2.setAdapter(spinnerArrayAdapter2);
-//            layout.addView(spinner2);
-//
-//            parentlayout.addView(layout);
-//        }
 
         final LinearLayout frame2 = (LinearLayout) findViewById(R.id.activity_freshorder_frame2);
         final LinearLayout frame3 = (LinearLayout) findViewById(R.id.activity_freshorder_frame3);
@@ -83,6 +49,7 @@ public class FreshOrderActivity extends AppCompatActivity {
         final Spinner item16= (Spinner) findViewById(R.id.noItems16);
         final Spinner item17= (Spinner) findViewById(R.id.noItems17);
         final Spinner item18= (Spinner) findViewById(R.id.noItems18);
+        final Spinner item19= (Spinner) findViewById(R.id.noItems19);
 
         final Spinner srvType1= (Spinner) findViewById(R.id.serviceType1);
         final Spinner srvType2= (Spinner) findViewById(R.id.serviceType2);
@@ -102,6 +69,7 @@ public class FreshOrderActivity extends AppCompatActivity {
         final Spinner srvType16= (Spinner) findViewById(R.id.serviceType16);
         final Spinner srvType17= (Spinner) findViewById(R.id.serviceType17);
         final Spinner srvType18= (Spinner) findViewById(R.id.serviceType18);
+        final Spinner srvType19= (Spinner) findViewById(R.id.serviceType19);
 
         showmore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +91,14 @@ public class FreshOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                x=1;
+                for(int j=0; j<19; j++)
+                {
+                    nofItem[j] = "";
+                    itemSelected[j] = 0;
+                    itemName[j] ="";
+                }
+
                 nofItem[0] = item1.getSelectedItem().toString();
                 nofItem[1] = item2.getSelectedItem().toString();
                 nofItem[2] = item3.getSelectedItem().toString();
@@ -141,6 +117,7 @@ public class FreshOrderActivity extends AppCompatActivity {
                 nofItem[15] = item16.getSelectedItem().toString();
                 nofItem[16] = item17.getSelectedItem().toString();
                 nofItem[17] = item18.getSelectedItem().toString();
+                nofItem[18] = item19.getSelectedItem().toString();
 
                 itemName[0] = srvType1.getSelectedItem().toString();
                 itemName[1] = srvType2.getSelectedItem().toString();
@@ -160,10 +137,11 @@ public class FreshOrderActivity extends AppCompatActivity {
                 itemName[15] = srvType16.getSelectedItem().toString();
                 itemName[16] = srvType17.getSelectedItem().toString();
                 itemName[17] = srvType18.getSelectedItem().toString();
+                itemName[18] = srvType19.getSelectedItem().toString();
 
 
 
-                for (int i=0 ; i<18 ; i++ )
+                for (int i=0 ; i<19 ; i++ )
                 {
                     if (nofItem[i].equals("0"))
                     {
