@@ -4,13 +4,20 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.ParseUser;
 
-public class MainActivity extends Activity {
+
+public class DashboardFragment extends Fragment {
+    public DashboardFragment() {
+        // Required empty public constructor
+    }
 
     Button logout,about,support,freshOrder,myorders;
     TextView header;
@@ -21,65 +28,46 @@ public class MainActivity extends Activity {
     ParseUser user = ParseUser.getCurrentUser();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
 
         //logout
-        logout=(Button)findViewById(R.id.activity_main_logoutButton);
+        logout= (Button) rootView.findViewById(R.id.activity_main_logoutButton);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pd = new ProgressDialog(MainActivity.this);
+                pd = new ProgressDialog(getActivity());
                 pd.setMessage("Logging Out");
                 pd.setCancelable(false);
                 pd.show();
-                ParseUser.logOut();
+                ParseUser.logOutInBackground();
                 pd.dismiss();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-        });
-
-        //about
-        about = (Button) findViewById(R.id.activity_main_aboutButton);
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(MainActivity.this,AboutActivity.class);
-                startActivity(in);
-            }
-        });
-
-        //support
-        support = (Button) findViewById(R.id.activity_main_supportButton);
-        support.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(MainActivity.this,SupportActivity.class);
-                startActivity(in);
+                startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
 
         //freshorder
-        freshOrder = (Button) findViewById(R.id.activity_main_freshOrderButton);
+        freshOrder = (Button) rootView.findViewById(R.id.activity_main_freshOrderButton);
         freshOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(MainActivity.this,FreshOrderActivity.class);
+                Intent in = new Intent(getActivity(),FreshOrderActivity.class);
                 startActivity(in);
             }
         });
 
-        myorders = (Button) findViewById(R.id.activity_main_myOrdersButton);
+        myorders = (Button) rootView.findViewById(R.id.activity_main_myOrdersButton);
         myorders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MyOrdersActivity.class));
+                startActivity(new Intent(getActivity(), MyOrdersActivity.class));
             }
         });
 
         //fetch stHeader info
-        header = (TextView) findViewById(R.id.activity_main_header);
+        header = (TextView) rootView.findViewById(R.id.activity_main_header);
         if(user.getBoolean("emailVerified")!=true)
         {
             header.setText("Sorry, " + user.getString("firstName").toString() + ".\nPlease verify your account first.");
@@ -92,5 +80,18 @@ public class MainActivity extends Activity {
             stHeader += "Phone : " + user.getString("phone").toString() + "\n";
             header.setText(stHeader);
         }
+
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 }

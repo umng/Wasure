@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import java.util.List;
 public class MyOrdersActivity extends AppCompatActivity {
 
     ProgressDialog pd;
+    Toolbar mToolbar;
 
     ParseUser user = ParseUser.getCurrentUser();
     ParseObject orderId;
@@ -37,6 +39,11 @@ public class MyOrdersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myorders);
+
+        mToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_freshorder);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("My Orders");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         pd = new ProgressDialog(MyOrdersActivity.this);
         pd.setMessage("Processing");
@@ -172,7 +179,6 @@ public class MyOrdersActivity extends AppCompatActivity {
                             linearLayout_598.addView(linearLayout_509);
 
                             //fetching items
-                            total = 0;
                             ParseQuery itemQuery = new ParseQuery("ItemsOrdered");
                             itemQuery.whereEqualTo("orderId", orderId);
                             itemQuery.orderByDescending("createdAt");
@@ -253,6 +259,7 @@ public class MyOrdersActivity extends AppCompatActivity {
                                 public void done(List<ParseObject> content, ParseException pEx) {
                                     // TODO Auto-generated method stub
                                     if (pEx == null && content != null) {
+                                        total = 0;
                                         for (ParseObject itemObject : content) {
 
                                             if (!(itemObject.getString("itemName").equals(""))) {

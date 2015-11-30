@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+
+    <RelativeLayout
+        android:id="@+id/nav_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:id="@+id/drawer_user_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user@wasure.in"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="15sp"
+            android:layout_below="@id/drawer_user_name"
+            android:layout_centerInParent="true"
+            android:id="@+id/drawer_user_email"/>
+
+        <ImageView
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:src="@drawable/logo"
+            android:scaleType="fitCenter"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5sp"
+            android:layout_above="@id/drawer_user_name"
+            android:layout_centerInParent="true"
+            android:id="@+id/drawer_user_image"/>
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/drawerList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nav_header_container"
+        android:layout_marginTop="15dp" />
+
+
+</RelativeLayout>

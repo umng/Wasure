@@ -1,7 +1,9 @@
 package in.wasure.wasurenew;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,21 +12,29 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.*;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 /**
  * Created by Umang on 10/11/2015.
  */
 public class FreshOrderActivity extends AppCompatActivity {
 
-    private int x=1;
+    private int x=1, orderTotal=0;
     private String[] nofItem={"","","","","","","","","","","","","","","","","","",""};
     private int[] itemSelected={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private String[] itemName={"","","","","","","","","","","","","","","","","","",""};
+
+    android.support.v7.widget.Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_freshorder);
+
+        mToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_freshorder);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Fresh Order");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         final LinearLayout frame2 = (LinearLayout) findViewById(R.id.activity_freshorder_frame2);
         final LinearLayout frame3 = (LinearLayout) findViewById(R.id.activity_freshorder_frame3);
@@ -150,15 +160,31 @@ public class FreshOrderActivity extends AppCompatActivity {
                     else
                     {
                         itemSelected[i] = getSelectedItems(nofItem[i]);
+                        orderTotal += getSelectedItems(nofItem[i]);
                     }
                 }
 
-
-                Intent i = new Intent(FreshOrderActivity.this , CheckoutActivity.class);
-                i.putExtra("NO_OF_ITEM",itemSelected);
-                i.putExtra("SERVICE_TYPE",itemName);
-
-                startActivity(i);
+                if(orderTotal>1)
+                {
+                    Intent i = new Intent(FreshOrderActivity.this , CheckoutActivity.class);
+                    i.putExtra("NO_OF_ITEM",itemSelected);
+                    i.putExtra("SERVICE_TYPE", itemName);
+                    startActivity(i);
+                }
+                else
+                {
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(FreshOrderActivity.this);
+                    builder1.setMessage("Your order should include at least 2 items.");
+                    builder1.setCancelable(true);
+                    builder1.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert11 = builder1.create();
+                    alert11.show();
+                }
             }
         });
 

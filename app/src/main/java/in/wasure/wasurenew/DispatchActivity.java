@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.parse.ParseUser;
 
+import in.wasure.wasurenew.activity.MainActivity;
+
 /**
  * Created by Umang on 10/23/2015.
  */

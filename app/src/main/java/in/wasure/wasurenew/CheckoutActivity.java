@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,8 @@ import com.parse.SaveCallback;
 
 import java.util.List;
 
+import in.wasure.wasurenew.activity.MainActivity;
+
 /**
  * Created by Umang on 11/18/2015.
  */
@@ -38,6 +41,7 @@ public class CheckoutActivity extends AppCompatActivity {
     TextView header;
     LinearLayout activity_header, activity;
     Button order,cancel;
+    Toolbar mToolbar;
 
     ParseUser user = ParseUser.getCurrentUser();
 
@@ -46,7 +50,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private String[] itemNameforShow= {"Pant                ","Shirt               ",
             "Jeans               ","T-Shirt             ","Jacket            ",
             "Blanket            ","Night Pant      ","Shorts               ","Ladies Top     ",
-            "Ladies Dress  ","Skirt                ","Capris          ","Slacks             ",
+            "Ladies Dress  ","Skirt                ","Capris            ","Slacks             ",
             "Bed Sheet     ","Pillow Cover ", "Bag (Medium)","Bag (Large)    ","Sweater         ",
             "Towel              "};
     private String[] itemName= {"Pant", "Shirt", "Jeans", "T-Shirt", "Jacket", "Blanket"
@@ -63,25 +67,21 @@ public class CheckoutActivity extends AppCompatActivity {
     String userDetailsObjectId;
     ParseObject orderId = new ParseObject("Orders");
     int r= 0;
+    boolean setOk = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        mToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_freshorder);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Checkout Order");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         Intent intent = getIntent();
         itemSelected = intent.getIntArrayExtra("NO_OF_ITEM");
         srvType = intent.getStringArrayExtra("SERVICE_TYPE");
-
-        for (int i=0; i<19; i++)
-        {
-            if(itemSelected[i]!=0)
-            {
-                List += itemNameforShow[i] + "\t\t" + itemSelected[i] + "\t\t\t\t\t\t" + srvType[i] + "\n";
-            }
-        }
-        TextView t = (TextView) findViewById(R.id.nameList);
-        t.setText(List);
 
 
         pd = new ProgressDialog(CheckoutActivity.this);
@@ -124,7 +124,18 @@ public class CheckoutActivity extends AppCompatActivity {
                 }
             });
 
-            //set name and phone
+            //print order info
+            for (int i=0; i<19; i++)
+            {
+                if(itemSelected[i]!=0)
+                {
+                    List += itemNameforShow[i] + "\t\t" + itemSelected[i] + "\t\t\t\t\t\t" + srvType[i] + "\n";
+                }
+            }
+            TextView t = (TextView) findViewById(R.id.nameList);
+            t.setText(List);
+
+            //set name
             name.setText(user.getString("firstName").toString()
                     + " "
                     + user.getString("lastName").toString());
@@ -149,16 +160,13 @@ public class CheckoutActivity extends AppCompatActivity {
                             rate[1][i] = rateObject.getInt("wash");
                             rate[2][i] = rateObject.getInt("iron");
                             rate[3][i] = rateObject.getInt("dryclean");
-                            if(i==18)
-                            {
+                            if (i == 18) {
                                 break;
-                            }
-                            else
-                            {
+                            } else {
                                 i++;
                             }
                         }
-                        z=1;
+                        z = 1;
                     } else {
                         Toast.makeText(CheckoutActivity.this, "Error in fetching rate for items!", Toast.LENGTH_LONG).show();
                     }
@@ -168,79 +176,102 @@ public class CheckoutActivity extends AppCompatActivity {
             ParseQuery<ParseObject> query = ParseQuery.getQuery("UserDetails");
             query.whereEqualTo("username", user);
             query.getFirstInBackground(new GetCallback<ParseObject>() {
-                public void done(ParseObject object, ParseException e) {
-                    userDetailsObjectId = object.getObjectId();
-                    if (object == null) {
-                        Log.d("score", "The getFirst for hostel request failed.");
-                    } else {
-                        hostelSelected = object.getString("hostel").toString();
-                        blockSelected = object.getString("block").toString();
+                                           public void done(ParseObject object, ParseException e) {
+                                               userDetailsObjectId = object.getObjectId();
+                                               if (object == null) {
+                                                   Log.d("score", "The getFirst for hostel request failed.");
+                                               } else {
+                                                   hostelSelected = object.getString("hostel").toString();
+                                                   blockSelected = object.getString("block").toString();
 
-                        //set room
-                        roomSelected = object.getString("room").toString();
-                        room.setText(roomSelected);
+                                                   //set room
+                                                   roomSelected = object.getString("room").toString();
+                                                   room.setText(roomSelected);
 
-                        //select hostel spinner
-                        if (hostelSelected.equals("Apartments")) {
-                            hostel.setSelection(0);
-                        } else if (hostelSelected.equals("Boys Hostel-1")) {
-                            hostel.setSelection(1);
-                        } else if (hostelSelected.equals("Boys Hostel-2")) {
-                            hostel.setSelection(2);
-                        } else if (hostelSelected.equals("Boys Hostel-3")) {
-                            hostel.setSelection(3);
-                        } else if (hostelSelected.equals("Boys Hostel-4")) {
-                            hostel.setSelection(4);
-                        } else if (hostelSelected.equals("Boys Hostel-5")) {
-                            hostel.setSelection(5);
-                        } else if (hostelSelected.equals("Boys Hostel-6")) {
-                            hostel.setSelection(6);
-                        } else if (hostelSelected.equals("Boys Hostel-7")) {
-                            hostel.setSelection(7);
-                        }
+                                                   //select hostel spinner
+                                                   if (hostelSelected.equals("Apartments")) {
+                                                       hostel.setSelection(0);
+                                                   } else if (hostelSelected.equals("Boys Hostel-1")) {
+                                                       hostel.setSelection(1);
+                                                   } else if (hostelSelected.equals("Boys Hostel-2")) {
+                                                       hostel.setSelection(2);
+                                                   } else if (hostelSelected.equals("Boys Hostel-3")) {
+                                                       hostel.setSelection(3);
+                                                   } else if (hostelSelected.equals("Boys Hostel-4")) {
+                                                       hostel.setSelection(4);
+                                                   } else if (hostelSelected.equals("Boys Hostel-5")) {
+                                                       hostel.setSelection(5);
+                                                   } else if (hostelSelected.equals("Boys Hostel-6")) {
+                                                       hostel.setSelection(6);
+                                                   } else if (hostelSelected.equals("Boys Hostel-7")) {
+                                                       hostel.setSelection(7);
+                                                   } else if (hostelSelected.equals("Girls Hostel-1")) {
+                                                       hostel.setSelection(8);
+                                                   } else if (hostelSelected.equals("Girls Hostel-2")) {
+                                                       hostel.setSelection(9);
+                                                   } else if (hostelSelected.equals("Girls Hostel-3")) {
+                                                       hostel.setSelection(10);
+                                                   } else if (hostelSelected.equals("Girls Hostel-4")) {
+                                                       hostel.setSelection(11);
+                                                   } else if (hostelSelected.equals("Girls Hostel-5")) {
+                                                       hostel.setSelection(12);
+                                                   } else if (hostelSelected.equals("Girls Hostel-6")) {
+                                                       hostel.setSelection(13);
+                                                   } else if (hostelSelected.equals("Uni Hotel")) {
+                                                       hostel.setSelection(14);
+                                                   }
 
-                        //select block spinner
-                        if (blockSelected.equals("None")) {
-                            block.setSelection(0);
-                        } else if (blockSelected.equals("A")) {
-                            block.setSelection(1);
-                        } else if (blockSelected.equals("B")) {
-                            block.setSelection(2);
-                        } else if (blockSelected.equals("C")) {
-                            block.setSelection(3);
-                        } else if (blockSelected.equals("D")) {
-                            block.setSelection(4);
-                        } else if (blockSelected.equals("E")) {
-                            block.setSelection(5);
-                        }
+                                                   //select block spinner
+                                                   if (blockSelected.equals("None")) {
+                                                       block.setSelection(0);
+                                                   } else if (blockSelected.equals("A")) {
+                                                       block.setSelection(1);
+                                                   } else if (blockSelected.equals("B")) {
+                                                       block.setSelection(2);
+                                                   } else if (blockSelected.equals("C")) {
+                                                       block.setSelection(3);
+                                                   } else if (blockSelected.equals("D")) {
+                                                       block.setSelection(4);
+                                                   } else if (blockSelected.equals("E")) {
+                                                       block.setSelection(5);
+                                                   }
 
-                        //pd dismiss
-                        if (x == 1) {
-                            pd.dismiss();
-                        } else {
-                            x = 1;
-                        }
-                    }
-                }
-            });
+                                                   //pd dismiss
+                                                   if (x == 1) {
+                                                       pd.dismiss();
+                                                   } else {
+                                                       x = 1;
+                                                   }
+                                               }
+                                           }
+                                       }
+
+            );
 
 
-            cancel.setOnClickListener(new View.OnClickListener() {
+            cancel.setOnClickListener(new View.OnClickListener()
+
+                                      {
+                                          @Override
+                                          public void onClick(View v) {
+                                              finish();
+                                          }
+                                      }
+
+            );
+
+            order.setOnClickListener(new View.OnClickListener()
+
+            {
                 @Override
                 public void onClick(View v) {
-                    finish();
-                }
-            });
 
-            order.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    setOk = true;
 
                     pd.show();
 
                     //close checkout activity on not able to fetch rate
-                    if(z==0)
-                    {
+                    if (z == 0) {
                         finish();
                     }
 
@@ -254,8 +285,24 @@ public class CheckoutActivity extends AppCompatActivity {
                     hostelOrder = hostel.getSelectedItem().toString();
                     blockOrder = block.getSelectedItem().toString();
 
-                    if (roomOrder == roomSelected && blockOrder == blockSelected
-                            && hostelOrder == hostelSelected && phoneOrder == phoneSelected) {
+                    if (roomOrder.equals("") || blockOrder.equals("")
+                            || hostelOrder.equals("") || phoneOrder.equals("")) {
+                        setOk = false;
+                        AlertDialog.Builder builder12 = new AlertDialog.Builder(CheckoutActivity.this);
+                        builder12.setMessage("Please fill up all the information.");
+                        builder12.setCancelable(true);
+                        builder12.setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                        return;
+                                    }
+                                });
+                        final AlertDialog alert12 = builder12.create();
+                        pd.dismiss();
+                        alert12.show();
+                    } else if (roomOrder.equals(roomSelected) && blockOrder.equals(blockSelected)
+                            && hostelOrder.equals(hostelSelected) && phoneOrder.equals(phoneSelected)) {
                         //nothing
                     } else {
                         //set phone
@@ -284,74 +331,85 @@ public class CheckoutActivity extends AppCompatActivity {
                         });
                     }
 
-                    //save order
-                    ParseObject orderNow = new ParseObject("Orders");
-                    orderNow.put("username", user);
-                    orderNow.put("status", "Pending");
-                    orderNow.put("address", roomOrder + ", " + hostelOrder + ", Block "
-                            + blockOrder);
-                    orderNow.put("phone", phoneOrder);
-                    orderNow.saveInBackground();
-                    orderId = orderNow;
-
-                    //SUCCESSFUL ORDER
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(CheckoutActivity.this);
-                    builder1.setMessage("Your order has been successfully ordered.");
-                    builder1.setCancelable(false);
-                    builder1.setPositiveButton("Ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                    finish();
-                                }
-                            });
-                    final AlertDialog alert11 = builder1.create();
-
-                    //save items
-                    for (int i = 0; i < 19; i++) {
-                        if (itemSelected[i] != 0) {
-
-                            //set rateSubmit
-                            if(srvType[i].equals("Wash/Iron") )
-                            {
-                                r = 0;
-                            }
-                            else if(srvType[i].equals("Wash"))
-                            {
-                                r = 1;
-                            }
-                            else if(srvType[i].equals("Iron"))
-                            {
-                                r = 2;
-                            }
-                            else if(srvType[i].equals( "Dry Clean"))
-                            {
-                                r = 3;
-                            }
-
-                            ParseObject orderedItem = new ParseObject("ItemsOrdered");
-                            orderedItem.put("orderId", orderId);
-                            orderedItem.put("itemName", itemName[i]);
-                            orderedItem.put("rate", rate[r][i]);
-                            orderedItem.put("numberItems", itemSelected[i]);
-                            orderedItem.put("srvType", srvType[i]);
-                            orderedItem.saveInBackground(new SaveCallback() {
-                                public void done(ParseException e) {
-                                    if (e == null) {
-
-                                    } else {
-
-                                        Toast.makeText(CheckoutActivity.this, "Error in ordering try again!", Toast.LENGTH_LONG).show();
-                                        pd.dismiss();
-                                        y = 1;
+                    if (setOk == true) {
+                        //SUCCESSFUL ORDER
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(CheckoutActivity.this);
+                        builder1.setMessage("Your order has been successfully ordered.");
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                        finish();
+                                        startActivity(new Intent(CheckoutActivity.this, MainActivity.class));
                                     }
-                                }
-                            });
-                        }
-                        if (y == 0) {
-                            pd.dismiss();
+                                });
+                        final AlertDialog alert11 = builder1.create();
 
+                        //save order
+                        ParseObject orderNow = new ParseObject("Orders");
+                        orderNow.put("username", user);
+                        orderNow.put("status", "Pending");
+                        orderNow.put("address", roomOrder + ", " + hostelOrder + ", Block "
+                                + blockOrder);
+                        orderNow.put("phone", phoneOrder);
+                        orderNow.saveInBackground(new SaveCallback() {
+                            public void done(com.parse.ParseException e) {
+                                if (e == null) {
+                                    if (y == 1) {
+                                        pd.dismiss();
+                                        alert11.show();
+                                    } else {
+                                        y++;
+                                    }
+                                } else {
+                                    //
+                                }
+                            }
+                        });
+                        orderId = orderNow;
+
+                        //save items
+                        for (int i = 0; i < 19; i++) {
+                            if (itemSelected[i] != 0) {
+
+                                //set rateSubmit
+                                if (srvType[i].equals("Wash/Iron")) {
+                                    r = 0;
+                                } else if (srvType[i].equals("Wash")) {
+                                    r = 1;
+                                } else if (srvType[i].equals("Iron")) {
+                                    r = 2;
+                                } else if (srvType[i].equals("Dry Clean")) {
+                                    r = 3;
+                                }
+
+                                ParseObject orderedItem = new ParseObject("ItemsOrdered");
+                                orderedItem.put("orderId", orderId);
+                                orderedItem.put("itemName", itemName[i]);
+                                orderedItem.put("rate", rate[r][i]);
+                                orderedItem.put("numberItems", itemSelected[i]);
+                                orderedItem.put("srvType", srvType[i]);
+                                orderedItem.saveInBackground(new SaveCallback() {
+                                    public void done(ParseException e) {
+                                        if (e == null) {
+
+                                        } else {
+
+                                            Toast.makeText(CheckoutActivity.this, "Error in ordering try again!", Toast.LENGTH_LONG).show();
+                                            pd.dismiss();
+                                            y = 1;
+                                        }
+                                    }
+                                });
+                            }
+                        }
+
+                        if (y == 1) {
+                            pd.dismiss();
                             alert11.show();
+                        } else {
+                            y++;
                         }
                     }
 

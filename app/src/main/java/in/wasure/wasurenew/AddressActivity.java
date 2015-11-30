@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import in.wasure.wasurenew.activity.MainActivity;
+
 /**
  * Created by Umang on 10/25/2015.
  */

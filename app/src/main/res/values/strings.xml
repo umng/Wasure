@@ -1,8 +1,37 @@
 <resources>
     <string name="app_name">Wasure</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_about">About</string>
+    <string name="nav_item_account">My Account</string>
+    <string name="nav_item_logout">Logout</string>
+    <string name="nav_item_support">Support</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_account</item>
+        <item>@string/nav_item_support</item>
+        <item>@string/nav_item_about</item>
+        <item>@string/nav_item_logout</item>
+    </string-array>
+
+    <string name="title_logout">Logout</string>
+    <string name="title_account">Account</string>
+    <string name="title_support">Support</string>
+    <string name="title_about">About</string>
+    <string name="title_home">Home</string>
+
+
+    <string name="err_msg_FirstName">Enter first name</string>
+    <string name="err_msg_LastName">Enter last name</string>
+    <string name="err_msg_email">Enter valid email</string>
+    <string name="err_msg_password">Enter the password</string>
 
     <string-array name="hostel">
         <item>Apartments</item>
@@ -13,6 +42,13 @@
         <item>Boys Hostel-5</item>
         <item>Boys Hostel-6</item>
         <item>Boys Hostel-7</item>
+        <item>Girls Hostel-1</item>
+        <item>Girls Hostel-2</item>
+        <item>Girls Hostel-3</item>
+        <item>Girls Hostel-4</item>
+        <item>Girls Hostel-5</item>
+        <item>Girls Hostel-6</item>
+        <item>Uni Hotel</item>
         <!--<item>Boys Hostel-6   Block-54</item>-->
     </string-array>
 
@@ -62,5 +98,8 @@
     <string-array name="srvTypeI">
         <item>Iron</item>
     </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
