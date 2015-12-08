@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import in.wasure.wasurenew.AboutFragment;
@@ -53,6 +56,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         // display the first navigation drawer view on app launch
         displayView(0);
+
+        user.fetchInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    // Success!
+                } else {
+                    // Failure!
+                }
+            }
+        });
 
     }
 
@@ -98,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
             case 3:
                 fragment = new AboutFragment();
-                title = getString(R.string.title_support);
+                title = getString(R.string.title_about);
                 break;
             case 4:
                 fragment = new LogoutFragment();
@@ -111,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.replace(R.id.container_body, fragment);  // add it for backstack .addToBackStack("tag");
             fragmentTransaction.commit();
 
             // set the toolbar title

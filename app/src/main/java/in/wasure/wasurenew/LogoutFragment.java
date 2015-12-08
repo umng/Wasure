@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,12 +45,25 @@ public class LogoutFragment extends Fragment {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                        fm.popBackStack();
+                    }
+
                     pd.dismiss();
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     Toast.makeText(getActivity(), "Logged out Successfully", Toast.LENGTH_LONG).show();
                 }
                 else
                 {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                        fm.popBackStack();
+                    }
+
                     pd.dismiss();
                     startActivity(new Intent(getActivity(), MainActivity.class));
                     Toast.makeText(getActivity(), "Can't connect to the internet\n Try again later", Toast.LENGTH_LONG).show();

@@ -19,7 +19,7 @@ public class DashboardFragment extends Fragment {
         // Required empty public constructor
     }
 
-    Button logout,about,support,freshOrder,myorders;
+    Button freshOrder,myorders;
     TextView header;
     ProgressDialog pd;
 
@@ -32,21 +32,6 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-
-        //logout
-        logout= (Button) rootView.findViewById(R.id.activity_main_logoutButton);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pd = new ProgressDialog(getActivity());
-                pd.setMessage("Logging Out");
-                pd.setCancelable(false);
-                pd.show();
-                ParseUser.logOutInBackground();
-                pd.dismiss();
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        });
 
         //freshorder
         freshOrder = (Button) rootView.findViewById(R.id.activity_main_freshOrderButton);
@@ -74,6 +59,7 @@ public class DashboardFragment extends Fragment {
         }
         else
         {
+            stHeader="";
             stHeader += "Hey " + user.getString("firstName").toString() + ",\n";
             stHeader += "User name : " + user.getUsername().toString() + "\n";
             stHeader += "Email : " + user.getEmail().toString() + "\n";

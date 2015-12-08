@@ -20,6 +20,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -193,8 +196,7 @@ public class MyOrdersActivity extends AppCompatActivity {
                                             if (!(itemObject.getString("itemName").equals(""))) {
                                                 //set item name
                                                 TextView textView_860 = new TextView(MyOrdersActivity.this);
-                                                textView_860.setText(itemObject.getString("itemName").trim()
-                                                        + " (" + itemObject.get("rate") + " Rs.)");
+                                                textView_860.setText(itemObject.getString("itemName").trim());
                                                 textView_860.setTextColor(Color.parseColor("#C5CAE9"));
                                                 LayoutParams layout_36 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -311,31 +313,33 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                             LinearLayout linearLayout_26 = new LinearLayout(MyOrdersActivity.this);
                             linearLayout_26.setOrientation(LinearLayout.VERTICAL);
-                            LayoutParams layout_849 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LayoutParams layout_849 = new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
-                            layout_849.width = LayoutParams.MATCH_PARENT;
+                            layout_849.width = LayoutParams.WRAP_CONTENT;
                             layout_849.height = LayoutParams.WRAP_CONTENT;
                             linearLayout_26.setLayoutParams(layout_849);
 
                             TextView textView_846 = new TextView(MyOrdersActivity.this);
                             textView_846.setTextColor(Color.parseColor("#8C9EFF"));
-                            textView_846.setText("20");
-                            textView_846.setTextSize((50 / getApplicationContext().getResources().getDisplayMetrics().scaledDensity));
-                            LayoutParams layout_555 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            Format dateFormatter = new SimpleDateFormat("dd");
+                            textView_846.setText(dateFormatter.format(orderObject.getDate("dateOrdered")));
+                            textView_846.setTextSize((80 / getApplicationContext().getResources().getDisplayMetrics().scaledDensity));
+                            LayoutParams layout_555 = new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
-                            layout_555.width = LayoutParams.MATCH_PARENT;
+                            layout_555.width = LayoutParams.WRAP_CONTENT;
                             layout_555.height = LayoutParams.WRAP_CONTENT;
                             layout_555.gravity = Gravity.CENTER;
                             textView_846.setLayoutParams(layout_555);
                             linearLayout_26.addView(textView_846);
 
                             TextView textView_799 = new TextView(MyOrdersActivity.this);
-                            textView_799.setTextSize((15 / getApplicationContext().getResources().getDisplayMetrics().scaledDensity));
-                            textView_799.setText("OCTOBER");
+                            textView_799.setTextSize((30 / getApplicationContext().getResources().getDisplayMetrics().scaledDensity));
+                            Format monthFormatter = new SimpleDateFormat("MMMM");
+                            textView_799.setText(monthFormatter.format(orderObject.getDate("dateOrdered")));
                             textView_799.setTextColor(Color.parseColor("#536DFE"));
-                            LayoutParams layout_444 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LayoutParams layout_444 = new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
-                            layout_444.width = LayoutParams.MATCH_PARENT;
+                            layout_444.width = LayoutParams.WRAP_CONTENT;
                             layout_444.height = LayoutParams.WRAP_CONTENT;
                             layout_444.topMargin = -5;
                             layout_444.gravity = Gravity.CENTER;
