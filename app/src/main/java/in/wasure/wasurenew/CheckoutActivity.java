@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,8 +40,9 @@ public class CheckoutActivity extends AppCompatActivity {
     EditText name,room,phone;
     Spinner hostel,block;
     TextView header;
-    LinearLayout activity_header, activity;
-    Button order,cancel;
+    LinearLayout activity;
+    RelativeLayout activity_header;
+    Button order,cancel,verify;
     Toolbar mToolbar;
 
     ParseUser user = ParseUser.getCurrentUser();
@@ -95,14 +97,22 @@ public class CheckoutActivity extends AppCompatActivity {
         hostel = (Spinner) findViewById(R.id.activity_checkout_hostel);
         block = (Spinner) findViewById(R.id.activity_checkout_block);
         header = (TextView) findViewById(R.id.header);
-        activity_header = (LinearLayout) findViewById(R.id.activity_checkout_header);
+        activity_header = (RelativeLayout) findViewById(R.id.activity_checkout_header);
         activity = (LinearLayout) findViewById(R.id.main);
+        verify= (Button) findViewById(R.id.activity_checkout_verify);
         order = (Button) findViewById(R.id.activity_checkout_order);
         cancel = (Button) findViewById(R.id.activity_checkout_cancel);
 
+        verify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(getPackageManager().getLaunchIntentForPackage("com.android.email"));
+            }
+        });
+
         if(user.getBoolean("emailVerified")!=true)
         {
-            header.setText("Sorry, " + user.getString("firstName").toString() + ".\nPlease verify your account first.");
+            header.setText(user.getString("firstName").toString() + ", we want to know you better.");
             activity.setVisibility(View.INVISIBLE);
             activity_header.setVisibility(View.VISIBLE);
             pd.dismiss();

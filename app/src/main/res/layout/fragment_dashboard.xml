@@ -5,6 +5,14 @@
     android:orientation="vertical"
     tools:context="in.wasure.wasurenew.activity.DashboardFragment">
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background_image"
+        android:alpha="0.1">
+
+    </RelativeLayout>
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
