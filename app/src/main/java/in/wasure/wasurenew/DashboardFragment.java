@@ -61,9 +61,9 @@ public class DashboardFragment extends Fragment {
         {
             stHeader="";
             stHeader += "Hey " + user.getString("firstName").toString() + ",\n";
-            stHeader += "User name : " + user.getUsername().toString() + "\n";
-            stHeader += "Email : " + user.getEmail().toString() + "\n";
-            stHeader += "Phone : " + user.getString("phone").toString() + "\n";
+//            stHeader += "User name : " + user.getUsername().toString() + "\n";
+//            stHeader += "Email : " + user.getEmail().toString() + "\n";
+//            stHeader += "Phone : " + user.getString("phone").toString() + "\n";
             header.setText(stHeader);
         }
 
