@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background_image"
+        android:alpha="0.05" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,14 +59,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Please verify your account first."
-                    android:textSize="20sp"
-                    android:textColor="#AAAAAA"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="You need to check your email and follow instructions to verify your email."
+                    android:text="You need to verify your email to place your first order."
                     android:textSize="20sp"
                     android:textColor="#888888"/>
 
@@ -69,7 +68,6 @@
                     android:layout_height="wrap_content"
                     android:text="Verify My Email"
                     android:id="@+id/activity_checkout_verify"
-                    android:layout_marginRight="10sp"
                     android:layout_marginTop="20sp"
                     android:textColor="@color/textColorPrimary"
                     android:background="@color/colorAccent"

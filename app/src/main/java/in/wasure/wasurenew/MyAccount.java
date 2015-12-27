@@ -71,7 +71,7 @@ public class MyAccount extends Fragment {
                     // Success!
                 } else {
                     // Failure!
-                    Toast.makeText(getActivity(), "Can't connect to the internet\n Try again later", Toast.LENGTH_LONG);
+                    Toast.makeText(getActivity(), "Can't connect to internet\n Try again later", Toast.LENGTH_LONG);
                 }
             }
         });

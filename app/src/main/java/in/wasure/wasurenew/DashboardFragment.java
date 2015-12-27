@@ -9,9 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+
+import in.wasure.wasurenew.activity.MainActivity;
 
 
 public class DashboardFragment extends Fragment {
@@ -22,6 +29,7 @@ public class DashboardFragment extends Fragment {
     Button freshOrder,myorders;
     TextView header;
     ProgressDialog pd;
+    RelativeLayout activity_header;
 
     private String stHeader ="";
 
@@ -52,10 +60,12 @@ public class DashboardFragment extends Fragment {
         });
 
         //fetch stHeader info
-        header = (TextView) rootView.findViewById(R.id.activity_main_header);
+        header = (TextView) rootView.findViewById(R.id.dashboard_header);
+        activity_header = (RelativeLayout) rootView.findViewById(R.id.activity_dashboard_header);
         if(user.getBoolean("emailVerified")!=true)
         {
-            header.setText("Sorry, " + user.getString("firstName").toString() + ".\nPlease verify your account first.");
+            header.setText(user.getString("firstName").toString() + ", we want to know you better.");
+            activity_header.setVisibility(View.VISIBLE);
         }
         else
         {
@@ -66,6 +76,20 @@ public class DashboardFragment extends Fragment {
 //            stHeader += "Phone : " + user.getString("phone").toString() + "\n";
             header.setText(stHeader);
         }
+
+        user.fetchInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    // Success!
+                    if(user.getBoolean("emailVerified")!=true)
+                    {
+                       startActivity (new Intent(getActivity(), MainActivity.class));
+                    }
+                } else {
+                    // Failure!
+                }
+            }
+        });
 
         // Inflate the layout for this fragment
         return rootView;

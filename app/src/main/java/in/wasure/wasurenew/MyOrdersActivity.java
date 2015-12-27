@@ -354,7 +354,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                         }
                     } else {
-                        Toast.makeText(MyOrdersActivity.this, "Error in fetching orders try again!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MyOrdersActivity.this, "No orders history found.", Toast.LENGTH_LONG).show();
                     }
                     pd.dismiss();
                 }

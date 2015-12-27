@@ -9,9 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@drawable/background_image"
-        android:alpha="0.1">
-
-    </RelativeLayout>
+        android:alpha="0.05" />
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -40,6 +38,47 @@
                     android:layout_marginRight="50sp"
                     android:src="@drawable/dash3"
                     android:layout_gravity="right"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_dashboard_header"
+                    android:visibility="gone"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginTop="-80sp">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:padding="12sp"
+                        android:background="@color/colorPrimaryDark"
+                        android:alpha="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/dashboard_header"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="25sp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Please verify your account first."
+                            android:textSize="20sp"
+                            android:textColor="#AAAAAA"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="goto email and follow instructions to verify your email."
+                            android:textSize="20sp"
+                            android:textColor="#888888"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
 
                 <ImageView
                     android:layout_width="150sp"

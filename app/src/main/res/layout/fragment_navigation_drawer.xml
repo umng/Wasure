@@ -43,6 +43,11 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background_image"
+        android:alpha="0.1" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/drawerList"

@@ -3,7 +3,11 @@ package in.wasure.wasurenew;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +31,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.wasure.wasurenew.activity.MainActivity;
@@ -106,7 +111,46 @@ public class CheckoutActivity extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(getPackageManager().getLaunchIntentForPackage("com.android.email"));
+                Intent emailIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:"));
+                PackageManager pm = getPackageManager();
+
+                List<ResolveInfo> resInfo = pm.queryIntentActivities(emailIntent, 0);
+                if (resInfo.size() > 0) {
+                    ResolveInfo ri = resInfo.get(0);
+                    // First create an intent with only the package name of the first registered email app
+                    // and build a picked based on it
+                    Intent intentChooser = pm.getLaunchIntentForPackage(ri.activityInfo.packageName);
+                    Intent openInChooser =
+                            Intent.createChooser(intentChooser, "Verify using");
+
+                    // Then create a list of LabeledIntent for the rest of the registered email apps
+                    List<LabeledIntent> intentList = new ArrayList<LabeledIntent>();
+                    for (int i = 1; i < resInfo.size(); i++) {
+                        // Extract the label and repackage it in a LabeledIntent
+                        ri = resInfo.get(i);
+                        String packageName = ri.activityInfo.packageName;
+                        Intent intent = pm.getLaunchIntentForPackage(packageName);
+                        intentList.add(new LabeledIntent(intent, packageName, ri.loadLabel(pm), ri.icon));
+                    }
+
+                    LabeledIntent[] extraIntents = intentList.toArray(new LabeledIntent[intentList.size()]);
+                    // Add the rest of the email apps to the picker selection
+                    openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
+                    startActivity(openInChooser);
+                }
+                else{
+                    AlertDialog.Builder builder5 = new AlertDialog.Builder(CheckoutActivity.this);
+                    builder5.setMessage("You do not have any email client installed.");
+                    builder5.setCancelable(false);
+                    builder5.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    final AlertDialog alert5 = builder5.create();
+                    alert5.show();
+                }
             }
         });
 
