@@ -102,6 +102,7 @@ public class FreshOrderActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 x=1;
+                orderTotal=0;
                 for(int j=0; j<19; j++)
                 {
                     nofItem[j] = "";
