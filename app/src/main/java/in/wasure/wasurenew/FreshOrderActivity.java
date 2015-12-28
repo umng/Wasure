@@ -40,6 +40,14 @@ public class FreshOrderActivity extends AppCompatActivity {
         final LinearLayout frame3 = (LinearLayout) findViewById(R.id.activity_freshorder_frame3);
         final Button showmore = (Button) findViewById(R.id.activity_freshorder_showmore);
         final Button ordernow = (Button) findViewById(R.id.activity_freshorder_ordernow);
+        final Button ratecard = (Button) findViewById(R.id.activity_freshorder_ratecard);
+
+        ratecard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FreshOrderActivity.this, RateCard.class));
+            }
+        });
 
         final Spinner item1= (Spinner) findViewById(R.id.noItems1);
         final Spinner item2= (Spinner) findViewById(R.id.noItems2);

@@ -4,19 +4,18 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
-    <!--<uses-permission android:name="android.permission.VIBRATE" />-->
-    <!--<uses-permission android:name="android.permission.GET_ACCOUNTS" />-->
-    <!--<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />-->
 
-    <!--&lt;!&ndash;-->
-      <!--IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below-->
-      <!--to match your app's package name + ".permission.C2D_MESSAGE".-->
-    <!--&ndash;&gt;-->
-    <!--<permission android:protectionLevel="signature"-->
-        <!--android:name="in.wasure.wasurenew.permission.C2D_MESSAGE" />-->
-    <!--<uses-permission android:name="in.wasure.wasurenew.permission.C2D_MESSAGE" />-->
-
+    <!-- <uses-permission android:name="android.permission.WAKE_LOCK" /> -->
+    <!-- <uses-permission android:name="android.permission.VIBRATE" /> -->
+    <!-- <uses-permission android:name="android.permission.GET_ACCOUNTS" /> -->
+    <!-- <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> -->
+    <!-- &lt;!&ndash; -->
+    <!-- IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below -->
+    <!-- to match your app's package name + ".permission.C2D_MESSAGE". -->
+    <!-- &ndash;&gt; -->
+    <!-- <permission android:protectionLevel="signature" -->
+    <!-- android:name="in.wasure.wasurenew.permission.C2D_MESSAGE" /> -->
+    <!-- <uses-permission android:name="in.wasure.wasurenew.permission.C2D_MESSAGE" /> -->
     <application
         android:name=".WasureApplication"
         android:allowBackup="true"
@@ -27,62 +26,68 @@
             android:name=".activity.MainActivity"
             android:label="@string/app_name" >
         </activity>
-
-        <activity android:name=".DispatchActivity"
-            android:noHistory="true">
+        <activity
+            android:name=".DispatchActivity"
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:label="SignUp" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="Log In" />
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:label="Reset Password" />
+        <activity
+            android:name=".FreshOrderActivity"
+            android:label="Fresh Order" />
+        <activity
+            android:name=".AddressActivity"
+            android:label="Add Address" />
+        <activity
+            android:name=".CheckoutActivity"
+            android:label="Checkout" />
+        <activity
+            android:name=".MyOrdersActivity"
+            android:label="My Orders" />
 
-        <activity android:name=".SignUpActivity"
-            android:label="SignUp"></activity>
+        <!-- <service android:name="com.parse.PushService" /> -->
+        <!-- <receiver android:name="com.parse.ParsePushBroadcastReceiver" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.parse.push.intent.RECEIVE" /> -->
+        <!-- <action android:name="com.parse.push.intent.DELETE" /> -->
+        <!-- <action android:name="com.parse.push.intent.OPEN" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <!-- <receiver android:name="com.parse.GcmBroadcastReceiver" -->
+        <!-- android:permission="com.google.android.c2dm.permission.SEND"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.android.c2dm.intent.RECEIVE" /> -->
+        <!-- <action android:name="com.google.android.c2dm.intent.REGISTRATION" /> -->
 
-        <activity android:name=".LoginActivity"
-            android:label="Log In"></activity>
 
-        <activity android:name=".ResetPasswordActivity"
-            android:label="Reset Password"></activity>
+        <!-- &lt;!&ndash; -->
+        <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
+        <!-- &ndash;&gt; -->
+        <!-- <category android:name="in.wasure.wasurenew" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
-        <activity android:name=".FreshOrderActivity"
-            android:label="Fresh Order"></activity>
 
-        <activity android:name=".AddressActivity"
-            android:label="Add Address"></activity>
+        <!-- <meta-data android:name="com.parse.push.notification_icon" -->
+        <!-- android:resource="@mipmap/ic_launcher"/> -->
 
-        <activity android:name=".CheckoutActivity"
-            android:label="Checkout"></activity>
-
-        <activity android:name=".MyOrdersActivity"
-            android:label="My Orders"></activity>
-
-        <!--<service android:name="com.parse.PushService" />-->
-        <!--<receiver android:name="com.parse.ParsePushBroadcastReceiver"-->
-            <!--android:exported="false">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.parse.push.intent.RECEIVE" />-->
-                <!--<action android:name="com.parse.push.intent.DELETE" />-->
-                <!--<action android:name="com.parse.push.intent.OPEN" />-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-        <!--<receiver android:name="com.parse.GcmBroadcastReceiver"-->
-            <!--android:permission="com.google.android.c2dm.permission.SEND">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.android.c2dm.intent.RECEIVE" />-->
-                <!--<action android:name="com.google.android.c2dm.intent.REGISTRATION" />-->
-
-                <!--&lt;!&ndash;-->
-                  <!--IMPORTANT: Change "com.parse.starter" to match your app's package name.-->
-                <!--&ndash;&gt;-->
-                <!--<category android:name="in.wasure.wasurenew" />-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-
-        <!--<meta-data android:name="com.parse.push.notification_icon"-->
-            <!--android:resource="@mipmap/ic_launcher"/>-->
-
+        <activity
+            android:name=".RateCard"
+            android:label="@string/title_activity_rate_card" >
+        </activity>
     </application>
 
 </manifest>
