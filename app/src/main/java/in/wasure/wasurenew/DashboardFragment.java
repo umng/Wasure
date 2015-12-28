@@ -26,7 +26,7 @@ public class DashboardFragment extends Fragment {
         // Required empty public constructor
     }
 
-    Button freshOrder,myorders;
+    Button freshOrder,myorders,rateCard;
     TextView header;
     ProgressDialog pd;
     RelativeLayout activity_header;
@@ -51,11 +51,21 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        //my orders
         myorders = (Button) rootView.findViewById(R.id.activity_main_myOrdersButton);
         myorders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), MyOrdersActivity.class));
+            }
+        });
+
+        //rate card
+        rateCard = (Button) rootView.findViewById(R.id.activity_main_rateCardButton);
+        rateCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), RateCard.class));
             }
         });
 
