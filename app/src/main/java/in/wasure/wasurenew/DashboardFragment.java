@@ -91,10 +91,6 @@ public class DashboardFragment extends Fragment {
             public void done(ParseObject object, ParseException e) {
                 if (e == null) {
                     // Success!
-                    if(user.getBoolean("emailVerified")!=true)
-                    {
-                       startActivity (new Intent(getActivity(), MainActivity.class));
-                    }
                 } else {
                     // Failure!
                 }

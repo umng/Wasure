@@ -2,12 +2,15 @@ package in.wasure.wasurenew;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -60,7 +63,6 @@ public class MyOrdersActivity extends AppCompatActivity {
 
             @Override
             public void done(List<ParseObject> content, ParseException pEx) {
-                // TODO Auto-generated method stub
                 if (pEx == null && content != null) {
                     if (!(content.isEmpty())) {
                         for (ParseObject orderObject : content) {
@@ -70,8 +72,8 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                             LinearLayout hello = new LinearLayout(MyOrdersActivity.this);
                             hello.setOrientation(LinearLayout.HORIZONTAL);
-                            hello.setBackgroundColor(Color.parseColor("#1A237E"));
-                            hello.setId(R.id.hello);
+                            hello.setBackgroundColor(Color.parseColor("#EEEEEE"));
+
                             LayoutParams layout_978 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_978.width = LayoutParams.MATCH_PARENT;
@@ -86,17 +88,19 @@ public class MyOrdersActivity extends AppCompatActivity {
                             layout_94.width = LayoutParams.MATCH_PARENT;
                             layout_94.height = LayoutParams.WRAP_CONTENT;
                             layout_94.weight = 1;
+                            layout_94.leftMargin = 5;
                             linearLayout_118.setLayoutParams(layout_94);
 
                             TextView textView_305 = new TextView(MyOrdersActivity.this);
                             textView_305.setText("Order ID: " + orderObject.get("orderId").toString());
                             textView_305.setTextColor(Color.parseColor("#3F51B5"));
                             textView_305.setBackgroundColor(Color.parseColor("#8C9EFF"));
+                            textView_305.setTextSize(16);
                             LayoutParams layout_34 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_34.width = LayoutParams.MATCH_PARENT;
                             layout_34.height = LayoutParams.WRAP_CONTENT;
-                            layout_34.leftMargin = 10;
+//                            layout_34.leftMargin = 10;
                             textView_305.setLayoutParams(layout_34);
                             linearLayout_118.addView(textView_305);
 
@@ -116,12 +120,12 @@ public class MyOrdersActivity extends AppCompatActivity {
                             layout_785.height = LayoutParams.WRAP_CONTENT;
                             layout_785.weight = 2;
                             layout_785.topMargin = 5;
-                            layout_785.leftMargin = 10;
+                            layout_785.leftMargin = 5;
                             linearLayout_643.setLayoutParams(layout_785);
 
                             TextView textView_196 = new TextView(MyOrdersActivity.this);
                             textView_196.setText("Item Name");
-                            textView_196.setTextColor(Color.parseColor("#E8EAF6"));
+                            textView_196.setTextColor(Color.parseColor("#1A237E"));
                             LayoutParams layout_239 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_239.width = LayoutParams.MATCH_PARENT;
@@ -145,7 +149,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                             TextView textView_60 = new TextView(MyOrdersActivity.this);
                             textView_60.setText("No.");
-                            textView_60.setTextColor(Color.parseColor("#E8EAF6"));
+                            textView_60.setTextColor(Color.parseColor("#1A237E"));
                             LayoutParams layout_178 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_178.width = LayoutParams.MATCH_PARENT;
@@ -169,7 +173,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                             TextView textView_116 = new TextView(MyOrdersActivity.this);
                             textView_116.setText("Price");
-                            textView_116.setTextColor(Color.parseColor("#E8EAF6"));
+                            textView_116.setTextColor(Color.parseColor("#1A237E"));
                             LayoutParams layout_386 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_386.width = LayoutParams.MATCH_PARENT;
@@ -189,7 +193,6 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                                 @Override
                                 public void done(List<ParseObject> content, ParseException pEx) {
-                                    // TODO Auto-generated method stub
                                     if (pEx == null && content != null) {
                                         for (ParseObject itemObject : content) {
 
@@ -197,7 +200,7 @@ public class MyOrdersActivity extends AppCompatActivity {
                                                 //set item name
                                                 TextView textView_860 = new TextView(MyOrdersActivity.this);
                                                 textView_860.setText(itemObject.getString("itemName").trim());
-                                                textView_860.setTextColor(Color.parseColor("#C5CAE9"));
+                                                textView_860.setTextColor(Color.parseColor("#222222"));
                                                 LayoutParams layout_36 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
                                                 layout_36.width = LayoutParams.MATCH_PARENT;
@@ -209,7 +212,7 @@ public class MyOrdersActivity extends AppCompatActivity {
                                                 //set item number
                                                 TextView textView_779 = new TextView(MyOrdersActivity.this);
                                                 textView_779.setText(itemObject.get("numberItems") + "");
-                                                textView_779.setTextColor(Color.parseColor("#C5CAE9"));
+                                                textView_779.setTextColor(Color.parseColor("#222222"));
                                                 LayoutParams layout_343 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
                                                 layout_343.width = LayoutParams.MATCH_PARENT;
@@ -221,7 +224,7 @@ public class MyOrdersActivity extends AppCompatActivity {
                                                 TextView textView_935 = new TextView(MyOrdersActivity.this);
                                                 textView_935.setText((Integer) itemObject.get("numberItems")
                                                         * (Integer) itemObject.get("rate") + "");
-                                                textView_935.setTextColor(Color.parseColor("#C5CAE9"));
+                                                textView_935.setTextColor(Color.parseColor("#222222"));
                                                 LayoutParams layout_233 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
                                                 layout_233.width = LayoutParams.MATCH_PARENT;
@@ -241,12 +244,14 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                             TextView textView_198 = new TextView(MyOrdersActivity.this);
                             textView_198.setText(orderObject.getString("address"));
-                            textView_198.setTextColor(Color.parseColor("#E8EAF6"));
+                            textView_198.setTextColor(Color.parseColor("#3F51B5"));
                             LayoutParams layout_234 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_234.width = LayoutParams.MATCH_PARENT;
                             layout_234.height = LayoutParams.WRAP_CONTENT;
                             layout_234.bottomMargin = 5;
+                            layout_234.topMargin = 10;
+                            layout_234.leftMargin = 5;
                             textView_198.setLayoutParams(layout_234);
                             linearLayout_118.addView(textView_198);
 
@@ -259,7 +264,6 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                                 @Override
                                 public void done(List<ParseObject> content, ParseException pEx) {
-                                    // TODO Auto-generated method stub
                                     if (pEx == null && content != null) {
                                         total = 0;
                                         for (ParseObject itemObject : content) {
@@ -272,7 +276,8 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                                         TextView textView_796 = new TextView(MyOrdersActivity.this);
                                         textView_796.setText("Total: " + String.valueOf(total) + " Rs.");
-                                        textView_796.setTextColor(Color.parseColor("#8C9EFF"));
+                                        textView_796.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                                        textView_796.setTextColor(Color.parseColor("#FF5722"));
                                         LayoutParams layout_909 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                                 LinearLayout.LayoutParams.WRAP_CONTENT);
                                         layout_909.width = LayoutParams.MATCH_PARENT;
@@ -284,7 +289,6 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                                     } else {
                                         Toast.makeText(MyOrdersActivity.this, "Error in fetching total amount try again!", Toast.LENGTH_LONG).show();
-
                                     }
                                 }
                             });
@@ -297,13 +301,31 @@ public class MyOrdersActivity extends AppCompatActivity {
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_991.width = LayoutParams.MATCH_PARENT;
                             layout_991.height = LayoutParams.WRAP_CONTENT;
-                            layout_991.weight = 3;
+                            layout_991.weight = 2.2f;
                             linearLayout_861.setLayoutParams(layout_991);
 
                             TextView textView_148 = new TextView(MyOrdersActivity.this);
-                            //textView_148.setTextColor(Color.parseColor("#009688"));
+                            textView_148.setTextColor(Color.parseColor("#FFFFFF"));
                             textView_148.setText((orderObject.getString("status")).toUpperCase());
-                            textView_148.setBackgroundColor(Color.parseColor("#009688"));
+                            textView_148.setBackgroundColor(Color.parseColor("#8C9EFF"));
+                            textView_148.setTextSize(16);
+                            if(orderObject.getString("status").trim().equals("Completed"))
+                            {
+                                textView_148.setTextColor(Color.parseColor("#009688"));
+                            }
+                            else if(orderObject.getString("status").trim().equals("Cancelled"))
+                            {
+                                textView_148.setTextColor(Color.parseColor("#B71C1C"));
+                            }
+                            else if(orderObject.getString("status").trim().equals("Pending"))
+                            {
+                                textView_148.setTextColor(Color.parseColor("#FFC400"));
+                            }
+                            else{
+                                textView_148.setTextColor(Color.parseColor("#212121"));
+                            }
+                            textView_148.setTypeface(null, Typeface.BOLD_ITALIC);
+                            textView_148.setGravity(Gravity.CENTER);
                             LayoutParams layout_721 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_721.width = LayoutParams.MATCH_PARENT;
@@ -313,9 +335,9 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                             LinearLayout linearLayout_26 = new LinearLayout(MyOrdersActivity.this);
                             linearLayout_26.setOrientation(LinearLayout.VERTICAL);
-                            LayoutParams layout_849 = new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LayoutParams layout_849 = new LayoutParams(LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
-                            layout_849.width = LayoutParams.WRAP_CONTENT;
+                            layout_849.width = LayoutParams.MATCH_PARENT;
                             layout_849.height = LayoutParams.WRAP_CONTENT;
                             linearLayout_26.setLayoutParams(layout_849);
 
@@ -323,7 +345,8 @@ public class MyOrdersActivity extends AppCompatActivity {
                             textView_846.setTextColor(Color.parseColor("#8C9EFF"));
                             Format dateFormatter = new SimpleDateFormat("dd");
                             textView_846.setText(dateFormatter.format(orderObject.getDate("dateOrdered")));
-                            textView_846.setTextSize((80 / getApplicationContext().getResources().getDisplayMetrics().scaledDensity));
+                            textView_846.setTextSize(TypedValue.COMPLEX_UNIT_SP, 48);
+                            textView_846.setGravity(Gravity.CENTER);
                             LayoutParams layout_555 = new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_555.width = LayoutParams.WRAP_CONTENT;
@@ -333,15 +356,16 @@ public class MyOrdersActivity extends AppCompatActivity {
                             linearLayout_26.addView(textView_846);
 
                             TextView textView_799 = new TextView(MyOrdersActivity.this);
-                            textView_799.setTextSize((30 / getApplicationContext().getResources().getDisplayMetrics().scaledDensity));
+                            textView_799.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                             Format monthFormatter = new SimpleDateFormat("MMMM");
                             textView_799.setText(monthFormatter.format(orderObject.getDate("dateOrdered")));
                             textView_799.setTextColor(Color.parseColor("#536DFE"));
+                            textView_799.setGravity(Gravity.CENTER);
                             LayoutParams layout_444 = new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT);
                             layout_444.width = LayoutParams.WRAP_CONTENT;
                             layout_444.height = LayoutParams.WRAP_CONTENT;
-                            layout_444.topMargin = -5;
+                            layout_444.topMargin = -12;
                             layout_444.gravity = Gravity.CENTER;
                             textView_799.setLayoutParams(layout_444);
                             linearLayout_26.addView(textView_799);
