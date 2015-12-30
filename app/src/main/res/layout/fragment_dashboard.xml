@@ -51,7 +51,7 @@
                         android:id="@+id/activity_main_freshOrderButton"
                         android:layout_marginTop="50sp"
                         android:textColor="@color/textColorPrimary"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorPrimary"
                         android:layout_marginBottom="24dp"
                         android:padding="12dp"/>
 
@@ -135,21 +135,21 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="My Orders"
-                        android:id="@+id/activity_main_myOrdersButton"
+                        android:text="Rate Card"
+                        android:id="@+id/activity_main_rateCardButton"
                         android:layout_marginTop="50sp"
                         android:textColor="@color/textColorPrimary"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorPrimary"
                         android:layout_marginBottom="24dp"
                         android:padding="12dp"/>
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rate Card"
-                        android:id="@+id/activity_main_rateCardButton"
+                        android:text="My Orders"
+                        android:id="@+id/activity_main_myOrdersButton"
                         android:textColor="@color/textColorPrimary"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorPrimary"
                         android:layout_marginTop="50sp"
                         android:layout_marginBottom="24dp"
                         android:padding="12dp"/>
