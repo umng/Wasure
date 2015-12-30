@@ -47,8 +47,8 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rate Card"
-                        android:id="@+id/activity_main_rateCardButton"
+                        android:text="Book Now"
+                        android:id="@+id/activity_main_freshOrderButton"
                         android:layout_marginTop="50sp"
                         android:textColor="@color/textColorPrimary"
                         android:background="@color/colorPrimaryDark"
@@ -135,8 +135,8 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Book Now"
-                        android:id="@+id/activity_main_freshOrderButton"
+                        android:text="My Orders"
+                        android:id="@+id/activity_main_myOrdersButton"
                         android:layout_marginTop="50sp"
                         android:textColor="@color/textColorPrimary"
                         android:background="@color/colorPrimaryDark"
@@ -146,8 +146,8 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="My Orders"
-                        android:id="@+id/activity_main_myOrdersButton"
+                        android:text="Rate Card"
+                        android:id="@+id/activity_main_rateCardButton"
                         android:textColor="@color/textColorPrimary"
                         android:background="@color/colorPrimaryDark"
                         android:layout_marginTop="50sp"
