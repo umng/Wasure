@@ -174,6 +174,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Phone"
                             android:inputType="phone"
+                            android:maxLength="10"
                             android:id="@+id/activity_checkout_phone"
                             android:layout_marginTop="5sp"
                             android:textColor="@color/colorPrimaryDark" />
