@@ -185,6 +185,23 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                             linearLayout_598.addView(linearLayout_509);
 
+                            linearLayout_118.addView(linearLayout_598);
+
+                            TextView textView_198 = new TextView(MyOrdersActivity.this);
+                            textView_198.setText(orderObject.getString("address"));
+                            textView_198.setTextColor(Color.parseColor("#3F51B5"));
+                            LayoutParams layout_234 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT);
+                            layout_234.width = LayoutParams.MATCH_PARENT;
+                            layout_234.height = LayoutParams.WRAP_CONTENT;
+                            layout_234.bottomMargin = 5;
+                            layout_234.topMargin = 10;
+                            layout_234.leftMargin = 5;
+                            textView_198.setLayoutParams(layout_234);
+                            linearLayout_118.addView(textView_198);
+
+                            final LinearLayout linearLayout_119 = linearLayout_118;
+
                             //fetching items
                             ParseQuery itemQuery = new ParseQuery("ItemsOrdered");
                             itemQuery.whereEqualTo("orderId", orderId);
@@ -194,6 +211,7 @@ public class MyOrdersActivity extends AppCompatActivity {
                                 @Override
                                 public void done(List<ParseObject> content, ParseException pEx) {
                                     if (pEx == null && content != null) {
+                                        total = 0;
                                         for (ParseObject itemObject : content) {
 
                                             if (!(itemObject.getString("itemName").equals(""))) {
@@ -231,65 +249,28 @@ public class MyOrdersActivity extends AppCompatActivity {
                                                 layout_233.height = LayoutParams.WRAP_CONTENT;
                                                 textView_935.setLayoutParams(layout_233);
                                                 linearLayout_509.addView(textView_935);
-                                            }
-                                        }
-                                    } else {
-                                        Toast.makeText(MyOrdersActivity.this, "Error in fetching items try again!", Toast.LENGTH_LONG).show();
 
-                                    }
-                                }
-                            });
-
-                            linearLayout_118.addView(linearLayout_598);
-
-                            TextView textView_198 = new TextView(MyOrdersActivity.this);
-                            textView_198.setText(orderObject.getString("address"));
-                            textView_198.setTextColor(Color.parseColor("#3F51B5"));
-                            LayoutParams layout_234 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-                            layout_234.width = LayoutParams.MATCH_PARENT;
-                            layout_234.height = LayoutParams.WRAP_CONTENT;
-                            layout_234.bottomMargin = 5;
-                            layout_234.topMargin = 10;
-                            layout_234.leftMargin = 5;
-                            textView_198.setLayoutParams(layout_234);
-                            linearLayout_118.addView(textView_198);
-
-                            final LinearLayout linearLayout_119 = linearLayout_118;
-
-                            ParseQuery totalQuery = new ParseQuery("ItemsOrdered");
-                            totalQuery.whereEqualTo("orderId", orderId);
-                            totalQuery.orderByDescending("createdAt");
-                            totalQuery.findInBackground(new FindCallback<ParseObject>() {
-
-                                @Override
-                                public void done(List<ParseObject> content, ParseException pEx) {
-                                    if (pEx == null && content != null) {
-                                        total = 0;
-                                        for (ParseObject itemObject : content) {
-
-                                            if (!(itemObject.getString("itemName").equals(""))) {
                                                 //set total amount
                                                 total += ((Integer) itemObject.get("numberItems") * (Integer) itemObject.get("rate"));
                                             }
                                         }
-
-                                        TextView textView_796 = new TextView(MyOrdersActivity.this);
-                                        textView_796.setText("Total: " + String.valueOf(total) + " Rs.");
-                                        textView_796.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                                        textView_796.setTextColor(Color.parseColor("#FF5722"));
-                                        LayoutParams layout_909 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                                                LinearLayout.LayoutParams.WRAP_CONTENT);
-                                        layout_909.width = LayoutParams.MATCH_PARENT;
-                                        layout_909.height = LayoutParams.WRAP_CONTENT;
-                                        layout_909.topMargin = 10;
-                                        layout_909.leftMargin = 10;
-                                        textView_796.setLayoutParams(layout_909);
-                                        linearLayout_119.addView(textView_796);
-
-                                    } else {
-                                        Toast.makeText(MyOrdersActivity.this, "Error in fetching total amount try again!", Toast.LENGTH_LONG).show();
                                     }
+                                    else {
+                                        Toast.makeText(MyOrdersActivity.this, "Error in fetching items try again!", Toast.LENGTH_LONG).show();
+                                    }
+
+                                    TextView textView_796 = new TextView(MyOrdersActivity.this);
+                                    textView_796.setText("Total: " + String.valueOf(total) + " Rs.");
+                                    textView_796.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                                    textView_796.setTextColor(Color.parseColor("#FF5722"));
+                                    LayoutParams layout_909 = new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT);
+                                    layout_909.width = LayoutParams.MATCH_PARENT;
+                                    layout_909.height = LayoutParams.WRAP_CONTENT;
+                                    layout_909.topMargin = 10;
+                                    layout_909.leftMargin = 10;
+                                    textView_796.setLayoutParams(layout_909);
+                                    linearLayout_119.addView(textView_796);
                                 }
                             });
 
