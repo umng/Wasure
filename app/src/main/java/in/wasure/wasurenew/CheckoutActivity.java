@@ -395,7 +395,9 @@ public class CheckoutActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                         finish();
-                                        startActivity(new Intent(CheckoutActivity.this, MainActivity.class));
+                                        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
                                     }
                                 });
                         final AlertDialog alert11 = builder1.create();
@@ -410,7 +412,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         orderNow.saveInBackground(new SaveCallback() {
                             public void done(com.parse.ParseException e) {
                                 if (e == null) {
-                                    if (y == 1) {
+                                    if (y == 2) {
                                         pd.dismiss();
                                         alert11.show();
                                     } else {
@@ -447,19 +449,24 @@ public class CheckoutActivity extends AppCompatActivity {
                                 orderedItem.saveInBackground(new SaveCallback() {
                                     public void done(ParseException e) {
                                         if (e == null) {
-
+                                            if (y == 2) {
+                                                pd.dismiss();
+                                                alert11.show();
+                                            } else {
+                                                y++;
+                                            }
                                         } else {
 
                                             Toast.makeText(CheckoutActivity.this, "Error in ordering try again!", Toast.LENGTH_LONG).show();
                                             pd.dismiss();
-                                            y = 1;
+                                            y++;
                                         }
                                     }
                                 });
                             }
                         }
 
-                        if (y == 1) {
+                        if (y == 2) {
                             pd.dismiss();
                             alert11.show();
                         } else {
