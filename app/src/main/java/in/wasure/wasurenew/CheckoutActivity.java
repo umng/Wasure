@@ -69,7 +69,7 @@ public class CheckoutActivity extends AppCompatActivity {
             , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
     private int[] itemSelected;
     private String[] srvType;
-    String phoneOrder, hostelOrder, blockOrder, roomOrder;
+    String nameOrder, phoneOrder, hostelOrder, blockOrder, roomOrder;
     String phoneSelected, hostelSelected, blockSelected, roomSelected;
     String userDetailsObjectId;
     ParseObject orderId = new ParseObject("Orders");
@@ -335,6 +335,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     hostel = (Spinner) findViewById(R.id.activity_checkout_hostel);
                     block = (Spinner) findViewById(R.id.activity_checkout_block);
                     roomOrder = room.getText().toString();
+                    nameOrder = name.getText().toString();
                     phoneOrder = phone.getText().toString();
                     hostelOrder = hostel.getSelectedItem().toString();
                     blockOrder = block.getSelectedItem().toString();
@@ -409,6 +410,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         orderNow.put("address", roomOrder + ", " + hostelOrder + ", Block "
                                 + blockOrder);
                         orderNow.put("phone", phoneOrder);
+                        orderNow.put("nameOfPerson", nameOrder);
                         orderNow.saveInBackground(new SaveCallback() {
                             public void done(com.parse.ParseException e) {
                                 if (e == null) {
