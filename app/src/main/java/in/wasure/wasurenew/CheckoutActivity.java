@@ -406,7 +406,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         //save order
                         ParseObject orderNow = new ParseObject("Orders");
                         orderNow.put("username", user);
-                        orderNow.put("status", "Pending");
+                        orderNow.put("status", "Verifying");
                         orderNow.put("address", roomOrder + ", " + hostelOrder + ", Block "
                                 + blockOrder);
                         orderNow.put("phone", phoneOrder);
