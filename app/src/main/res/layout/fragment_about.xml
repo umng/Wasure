@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Version 0.1.2.1"
+                android:text="Version 1.0.2.0"
                 android:textSize="25sp"
                 android:layout_gravity="center" />
 
@@ -47,12 +47,14 @@
                 android:textSize="30sp"
                 android:layout_gravity="center" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Powered by One Corporation"
-                android:layout_marginTop="50sp"
-                android:layout_gravity="center_horizontal"/>
+                android:id="@+id/fragment_about_one"
+                android:background="#00000000"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="50sp"/>
 
         </LinearLayout>
 
