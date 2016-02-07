@@ -70,7 +70,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 
                             LinearLayout linearLayout_54 = (LinearLayout) findViewById(R.id.activity_myorders_listlayout);
 
-                            LinearLayout hello = new LinearLayout(MyOrdersActivity.this);
+                            final LinearLayout hello = new LinearLayout(MyOrdersActivity.this);
                             hello.setOrientation(LinearLayout.HORIZONTAL);
                             hello.setBackgroundColor(Color.parseColor("#EEEEEE"));
 
@@ -260,6 +260,10 @@ public class MyOrdersActivity extends AppCompatActivity {
                                     }
 
                                     TextView textView_796 = new TextView(MyOrdersActivity.this);
+                                    if(total==0)
+                                    {
+                                        hello.setVisibility(View.GONE);
+                                    }
                                     textView_796.setText("Total: " + String.valueOf(total) + " Rs.");
                                     textView_796.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                                     textView_796.setTextColor(Color.parseColor("#FF5722"));
