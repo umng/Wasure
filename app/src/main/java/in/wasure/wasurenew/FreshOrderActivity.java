@@ -12,7 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.*;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 /**
  * Created by Umang on 10/11/2015.
@@ -23,6 +29,7 @@ public class FreshOrderActivity extends AppCompatActivity {
     private String[] nofItem={"","","","","","","","","","","","","","","","","","",""};
     private int[] itemSelected={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private String[] itemName={"","","","","","","","","","","","","","","","","","",""};
+    ParseUser user = ParseUser.getCurrentUser();
 
     android.support.v7.widget.Toolbar mToolbar;
 
@@ -108,6 +115,17 @@ public class FreshOrderActivity extends AppCompatActivity {
         ordernow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                user.fetchInBackground(new GetCallback<ParseObject>() {
+                    public void done(ParseObject object, ParseException e) {
+                        if (e == null) {
+                            // Success!
+                        } else {
+                            // Failure!
+                            Toast.makeText(FreshOrderActivity.this, "Can't connect to internet\n Try again later", Toast.LENGTH_LONG);
+                        }
+                    }
+                });
 
                 x=1;
                 orderTotal=0;
