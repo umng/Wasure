@@ -693,7 +693,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="30sp"
                                 android:id="@+id/serviceType12"
-                                android:entries="@array/srvTypeWI"
+                                android:entries="@array/srvTypeWIOnly"
                                 android:layout_weight="1"
                                 android:layout_gravity="center"/>
 
@@ -747,7 +747,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="30sp"
                                 android:id="@+id/serviceType13"
-                                android:entries="@array/srvTypeWI"
+                                android:entries="@array/srvTypeWIOnly"
                                 android:layout_weight="1"
                                 android:layout_gravity="center"/>
 
@@ -811,7 +811,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="30sp"
                                 android:id="@+id/serviceType14"
-                                android:entries="@array/srvTypeW"
+                                android:entries="@array/srvTypeWIOnly"
                                 android:layout_weight="1"
                                 android:layout_gravity="center"/>
 
@@ -865,7 +865,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="30sp"
                                 android:id="@+id/serviceType15"
-                                android:entries="@array/srvTypeW"
+                                android:entries="@array/srvTypeWIOnly"
                                 android:layout_weight="1"
                                 android:layout_gravity="center"/>
 
@@ -1081,7 +1081,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="30sp"
                                 android:id="@+id/serviceType19"
-                                android:entries="@array/srvTypeW"
+                                android:entries="@array/srvTypeWIOnly"
                                 android:layout_weight="1"
                                 android:layout_gravity="center"/>
 

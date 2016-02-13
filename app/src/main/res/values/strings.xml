@@ -73,14 +73,14 @@
     <string-array name="srvTypeAll">
         <item>Wash/Iron</item>
         <item>Iron</item>
-        <item>Wash</item>
+        <!--<item>Wash</item>-->
         <item>Dry Clean</item>
     </string-array>
 
     <string-array name="srvTypeWI">
         <item>Wash/Iron</item>
         <item>Iron</item>
-        <item>Wash</item>
+        <!--<item>Wash</item>-->
     </string-array>
 
     <string-array name="srvTypeWIOnly">
@@ -92,7 +92,7 @@
     </string-array>
 
     <string-array name="srvTypeW">
-        <item>Wash</item>
+        <!--<item>Wash</item>-->
     </string-array>
 
     <string-array name="srvTypeI">
