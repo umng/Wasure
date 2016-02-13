@@ -38,8 +38,8 @@ public class RateCard extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         wb=(WebView)findViewById(R.id.webView1);
+        wb.clearCache(true);
         wb.getSettings().setJavaScriptEnabled(true);
-        wb.loadUrl("http://wasure.azurewebsites.net/RateCard/ratecard.html");
-
+        wb.loadUrl("https://wasure.azurewebsites.net/RateCard/ratecard.html");
     }
 }
