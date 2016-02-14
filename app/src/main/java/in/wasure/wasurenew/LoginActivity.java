@@ -16,9 +16,11 @@ import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
 
 import in.wasure.wasurenew.activity.MainActivity;
+import in.wasure.wasurenew.helper.ParseUtils;
 
 /**
  * Created by Umang on 10/16/2015.
@@ -36,6 +38,9 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ParsePush.unsubscribeInBackground("WasureCustomer");
+        ParseUtils.subscribeWithEmail("");
 
         inputEmail=(EditText) findViewById(R.id.activity_login_username);
         pwd=(EditText) findViewById(R.id.activity_login_password);
@@ -80,6 +85,7 @@ public class LoginActivity extends Activity {
                         public void done(ParseUser parseUser, ParseException e) {
                             if(e==null)
                             {
+                                ParseUtils.subscribeWithEmail(stUname);
                                 pd.dismiss();
                                 Toast.makeText(LoginActivity.this,"Successfully Logged In!",Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
