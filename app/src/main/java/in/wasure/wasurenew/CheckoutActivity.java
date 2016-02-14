@@ -387,21 +387,6 @@ public class CheckoutActivity extends AppCompatActivity {
                     }
 
                     if (setOk == true) {
-                        //SUCCESSFUL ORDER
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(CheckoutActivity.this);
-                        builder1.setMessage("Your order has been successfully ordered.");
-                        builder1.setCancelable(false);
-                        builder1.setPositiveButton("Ok",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                        finish();
-                                        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(intent);
-                                    }
-                                });
-                        final AlertDialog alert11 = builder1.create();
 
                         //save order
                         ParseObject orderNow = new ParseObject("Orders");
@@ -411,12 +396,16 @@ public class CheckoutActivity extends AppCompatActivity {
                                 + blockOrder);
                         orderNow.put("phone", phoneOrder);
                         orderNow.put("nameOfPerson", nameOrder);
+                        orderNow.put("email",user.getEmail().toString().trim());
                         orderNow.saveInBackground(new SaveCallback() {
                             public void done(com.parse.ParseException e) {
                                 if (e == null) {
                                     if (y == 2) {
                                         pd.dismiss();
-                                        alert11.show();
+                                        Toast.makeText(CheckoutActivity.this, "Your order has been successfully placed.", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(CheckoutActivity.this, MyOrdersActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
                                     } else {
                                         y++;
                                     }
@@ -453,7 +442,10 @@ public class CheckoutActivity extends AppCompatActivity {
                                         if (e == null) {
                                             if (y == 2) {
                                                 pd.dismiss();
-                                                alert11.show();
+                                                Toast.makeText(CheckoutActivity.this, "Your order has been successfully placed.", Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(CheckoutActivity.this, MyOrdersActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
                                             } else {
                                                 y++;
                                             }
@@ -470,7 +462,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
                         if (y == 2) {
                             pd.dismiss();
-                            alert11.show();
+                            Toast.makeText(CheckoutActivity.this, "Your order has been successfully placed.", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(CheckoutActivity.this, MyOrdersActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                         } else {
                             y++;
                         }
