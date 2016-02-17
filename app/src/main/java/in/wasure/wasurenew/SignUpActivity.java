@@ -15,8 +15,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.ParseException;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import in.wasure.wasurenew.helper.ParseUtils;
 
 /**
  * Created by Umang on 10/15/2015.
@@ -33,8 +36,10 @@ public class SignUpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_signup);
+
+        ParsePush.unsubscribeInBackground("WasureCustomer");
+        ParseUtils.subscribeWithEmail("");
 
         inputEmail=(EditText) findViewById(R.id.activity_signup_email);
         pwd=(EditText) findViewById(R.id.activity_signup_password);
@@ -78,6 +83,7 @@ public class SignUpActivity extends Activity {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
+                                ParseUtils.subscribeWithEmail(stUname);
                                 pd.dismiss();
                                 Toast.makeText(SignUpActivity.this, "You have SignedUp!", Toast.LENGTH_LONG).show();
                                 Intent in = new Intent(SignUpActivity.this, AddressActivity.class);
