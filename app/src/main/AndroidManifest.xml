@@ -74,6 +74,8 @@
             android:label="@string/title_activity_rate_card" >
         </activity>
 
+        <meta-data android:name="com.parse.push.gcm_sender_id"
+            android:value="id:922451943543" />
         <service android:name="com.parse.PushService" />
         <receiver android:name=".receiver.CustomPushReceiver"
             android:exported="false">

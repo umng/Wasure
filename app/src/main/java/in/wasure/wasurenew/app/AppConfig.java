@@ -7,5 +7,6 @@ public class AppConfig {
     public static final String PARSE_CHANNEL = "WasureCustomer";
     public static final String PARSE_APPLICATION_ID = "f4J4dIaOMNEtBxnyPKAEAn0Gz4UbtddPN9VXkyRS";
     public static final String PARSE_CLIENT_KEY = "8nFAfo2LPlvO1KFnQw3au1zTcDxdrz61txmGGCRr";
+    public static final String PARSE_SERVER = "https://parseapi.back4app.com/";
     public static final int NOTIFICATION_ID = 100;
 }

@@ -15,7 +15,7 @@ import com.parse.SaveCallback;
 import in.wasure.wasurenew.app.AppConfig;
 
 /**
- * Created by Umang on 2/13/2016.
+ * Created by umang on 15/9/16.
  */
 public class ParseUtils {
 
@@ -29,9 +29,19 @@ public class ParseUtils {
     }
 
     public static void registerParse(Context context) {
+
         // initializing parse library
-        Parse.initialize(context, AppConfig.PARSE_APPLICATION_ID, AppConfig.PARSE_CLIENT_KEY);
-        ParseInstallation.getCurrentInstallation().saveInBackground();
+        Parse.initialize(new Parse.Configuration.Builder(context)
+                .applicationId(AppConfig.PARSE_APPLICATION_ID)
+                .clientKey(AppConfig.PARSE_CLIENT_KEY)
+                .server(AppConfig.PARSE_SERVER)
+//                .enableLocalDataStore()
+                .build()
+        );
+
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        installation.put("GCMSenderId", "301426573173");
+        installation.saveInBackground();
 
         ParsePush.subscribeInBackground(AppConfig.PARSE_CHANNEL, new SaveCallback() {
             @Override
