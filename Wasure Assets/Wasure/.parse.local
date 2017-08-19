@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Wasure": {
+      "applicationId": "f4J4dIaOMNEtBxnyPKAEAn0Gz4UbtddPN9VXkyRS"
+    },
+    "_default": {
+      "link": "Wasure"
+    }
+  }
+}

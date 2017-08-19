@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "301426573173",
+    "firebase_url": "https://wasure-1ef69.firebaseio.com",
+    "project_id": "wasure-1ef69",
+    "storage_bucket": "wasure-1ef69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301426573173:android:a4c9bf0306c7e76d",
+        "android_client_info": {
+          "package_name": "in.wasure.wasurenew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301426573173-jqul124vrrbksbobgcnt197u9kvs8b7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqY2McgvZMmioaRxs-oBd7uMpPM0WYEgU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
